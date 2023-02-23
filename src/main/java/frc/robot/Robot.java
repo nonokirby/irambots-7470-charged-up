@@ -305,7 +305,6 @@ import frc.robot.subsystems.*;
 
   @Override
   public void teleopInit() {
-   Robot.grabber.grabUp();
    //driveTrain.tankDrive(0.0, 0.0);
     //Constants.shooterMotor.set(0.0);
     //Constants.cargoMotor.set(0.0);
@@ -320,7 +319,6 @@ import frc.robot.subsystems.*;
    */
   @Override
   public void teleopPeriodic() {
-    Robot.grabber.grabDown();
     //CommandScheduler.getInstance().run();
     double speed = Robot.RobotContainer.m_arcade.getRawAxis(1);
     double rotation = Robot.RobotContainer.m_arcade.getRawAxis(2);

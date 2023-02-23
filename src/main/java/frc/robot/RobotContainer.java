@@ -1,7 +1,6 @@
  
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -9,7 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
-
+import frc.robot.subsystems.*;
 /*
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -19,21 +18,36 @@ import frc.robot.commands.*;
    //controllers
    public final Joystick m_driver = new Joystick(1);
    public final Joystick m_arcade = new Joystick(0);
-   public DoubleSolenoid grabSolenoid = Constants.grabSolenoid;
- 
- 
- public RobotContainer() {
+   
+   /*m_driver Buttons Controller */
+   private final JoystickButton grabDown = new JoystickButton(m_driver,6);
+   //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
+   private final JoystickButton grabUp = new JoystickButton(m_driver, 4);
+
+   /*m_arcade Buttons Controller */
+   //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
+
+   /* Subsystems */
+public final static grabber grabber = new grabber();
+   public RobotContainer() {
 //configures button bindings
 configureButtonBindings();
 
 Robot.driveTrain.setDefaultCommand(new driveManual());
+Robot.grabber.setDefaultCommand(new grabUp(grabber));
+Robot.grabber.setDefaultCommand(new grabDown(grabber));
+
  }
 
 private void configureButtonBindings() {
+/* Driver 1 Buttons */
+  grabDown.whileTrue(new grabDown(grabber));
 
+  /* Driver 2 Buttons */
+  grabUp.whileTrue(new grabUp(grabber));
 //driver controller
 //arm limited
-new JoystickButton(m_driver, 11).whileTrue(new armUpLimited());
+/* new JoystickButton(m_driver, 11).whileTrue(new armUpLimited());
 new JoystickButton(m_driver, 12).whileTrue(new armDownLimited());
 
 //arm manual
@@ -59,7 +73,8 @@ new JoystickButton(m_arcade, 2).whileTrue(new grabUp());
 new JoystickButton(m_arcade, 7).whileTrue(new armWest());
 new JoystickButton(m_arcade, 8).whileTrue(new armEast());
 }
-
+*/
+}
 public Joystick getjoy1() {
   return m_arcade;
 }

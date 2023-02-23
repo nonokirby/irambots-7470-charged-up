@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 import frc.robot.Robot;
-
+import frc.robot.subsystems.grabber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
@@ -12,16 +12,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class grabUp extends CommandBase {
-
-  public grabUp() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(Robot.grabber);
+public grabUp(grabber subsystem) {
+    addRequirements(Robot.grabber);
 
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void execute() {
+  public void initialize() {
     Robot.grabber.grabUp();
     System.out.print("grabUp ");
   }
