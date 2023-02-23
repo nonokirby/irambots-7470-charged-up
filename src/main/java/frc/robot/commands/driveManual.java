@@ -1,35 +1,26 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.driveTrain;
-import frc.robot.RobotContainer;
+//import frc.robot.RobotContainer;
+
 public class driveManual extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final driveTrain driveTrain;
+        public driveManual() {
+        addRequirements(Robot.driveTrain);
+    }
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param drive The subsystem used by this command.
-   */
-  public driveManual(driveTrain drive) {
-    driveTrain = drive;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drive);
-  }
+    // Called just before this Command runs the first time
+    @Override
+    public void initialize() {
+    }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    public void execute() {
+        ////////////////////
+        //Curvature Drive//
+        ////////////////////
+        //TODO edit joystick mapping for the drivetrain
     double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
     double rotation = Robot.RobotContainer.m_arcade.getRawAxis(0) - Robot.RobotContainer.m_driver.getRawAxis(1);
     boolean quickTurn = speed > -0.15 && speed < 0.15;
@@ -46,17 +37,24 @@ public class driveManual extends CommandBase {
 
         rotation = 0;
       }
-    Robot.drive.driveCurvature(-speed, rotation, quickTurn);
-   // Robot.drive.tankDrive(Robot.RobotContainer.m_arcade.getRawAxis(1),Robot.RobotContainer.m_arcade.getRawAxis(2));
+    Robot.driveTrain.driveCurvature(-speed, rotation, quickTurn);
+
     }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+    // Called once after isFinished returns true
+    @Override
+    public void end(boolean interrupted) {
+    }
   }
-}
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+   /* @Override
+     protected void interrupted() {
+    }
+    */
