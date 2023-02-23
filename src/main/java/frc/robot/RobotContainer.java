@@ -23,6 +23,7 @@ import frc.robot.subsystems.*;
    private final JoystickButton grabDown = new JoystickButton(m_driver,6);
    //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
    private final JoystickButton grabUp = new JoystickButton(m_driver, 4);
+   private final JoystickButton armUp = new JoystickButton(m_driver,11);
 
    /*m_arcade Buttons Controller */
    //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
@@ -34,15 +35,12 @@ public final static grabber grabber = new grabber();
 configureButtonBindings();
 
 Robot.driveTrain.setDefaultCommand(new driveManual());
-Robot.grabber.setDefaultCommand(new grabUp(grabber));
-Robot.grabber.setDefaultCommand(new grabDown(grabber));
-
  }
 
 private void configureButtonBindings() {
 /* Driver 1 Buttons */
   grabDown.whileTrue(new grabDown(grabber));
-
+  armUp.whileTrue(new armManual());
   /* Driver 2 Buttons */
   grabUp.whileTrue(new grabUp(grabber));
 //driver controller

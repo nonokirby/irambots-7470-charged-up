@@ -14,12 +14,10 @@ public class grabber extends SubsystemBase {
 
 public void grabDown() {
   grabSolenoid.set(Value.kReverse);
-  grabSolenoid.set(Value.kForward);
   
 }
 public void grabUp() {
   grabSolenoid.set(Value.kForward);
-  grabSolenoid.set(Value.kReverse);
   
 }  
 }

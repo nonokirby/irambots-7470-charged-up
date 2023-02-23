@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 //import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 //import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -28,7 +30,7 @@ public class arm extends SubsystemBase {
     }
     //armDown makes the motor run in reverse to bring the arm down
     public void armDown() {
-        armMotorVictorSPX.set(1.0);
+        Robot.driveTrain.driveCurvature(1.0,0,false);
     }
     public void stop() {
         armMotorVictorSPX.set(0.0);

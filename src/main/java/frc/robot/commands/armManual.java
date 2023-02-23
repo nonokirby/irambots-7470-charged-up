@@ -19,7 +19,7 @@ public class armManual extends CommandBase {
 
     @Override
     public void execute(){
-        Robot.arm.armVert();
+        Robot.arm.armDown();
     }
     @Override
     public boolean isFinished() {

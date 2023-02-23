@@ -132,7 +132,7 @@ public static WPI_VictorSPX armMotor;
 
   directionalMotor = new WPI_VictorSPX(10);
   grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-  armMotor = new WPI_VictorSPX(9);
+  armMotor = new WPI_VictorSPX(5);
 
 //Motor Controller Parameters
   armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
