@@ -22,14 +22,15 @@ import frc.robot.subsystems.*;
    /*m_driver Buttons Controller */
    private final JoystickButton grabDown = new JoystickButton(m_driver,6);
    //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
-   private final JoystickButton grabUp = new JoystickButton(m_driver, 5);
+   //private final JoystickButton grabUp = new JoystickButton(m_driver, 5);
    private final JoystickButton armUp = new JoystickButton(m_driver,11);
-
+   private final JoystickButton grabUp = ;
    /*m_arcade Buttons Controller */
    //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
 
    /* Subsystems */
 public final static grabber grabber = new grabber();
+public final static arm arm = new arm();
    public RobotContainer() {
 //configures button bindings
 configureButtonBindings();
