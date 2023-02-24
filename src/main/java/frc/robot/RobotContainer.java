@@ -41,10 +41,10 @@ Robot.driveTrain.setDefaultCommand(new driveManual());
 
 private void configureButtonBindings() {
 /* Driver 1 Buttons */
-  grabDown.onTrue(new grabDown(grabber));
-  armUp.onTrue(new armManual());
+  grabDown.whileTrue(new grabDown(grabber));
+  armUp.whileTrue(new armManual());
   /* Driver 2 Buttons */
-  grabUp.onTrue(new grabUp(grabber));
+  grabUp.whileTrue(new grabUp(grabber));
   System.out.print("configureButtonBindings");
 //driver controller
 //arm limited

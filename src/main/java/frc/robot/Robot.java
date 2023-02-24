@@ -174,6 +174,7 @@ import frc.robot.subsystems.*;
    */
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
     //SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
   }
  
@@ -319,7 +320,7 @@ import frc.robot.subsystems.*;
    */
   @Override
   public void teleopPeriodic() {
-    //CommandScheduler.getInstance().run();
+    CommandScheduler.getInstance().run();
     double speed = Robot.RobotContainer.m_arcade.getRawAxis(1);
     double rotation = Robot.RobotContainer.m_arcade.getRawAxis(2);
    //driveTrain.tankDrive(-m_driver.getY(),m_driver.getY());
