@@ -15,24 +15,21 @@ import frc.robot.subsystems.*;
  */
 
  public class RobotContainer {
-   //controllers
+  
+//controllers
    public final Joystick m_driver = new Joystick(1);
    public final Joystick m_arcade = new Joystick(0);
-   
-   /*m_driver Buttons Controller */
+
    private final JoystickButton grabDown = new JoystickButton(m_driver,6);
-   //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
    private final JoystickButton grabUp = new JoystickButton(m_driver, 5);
    private final JoystickButton armUp = new JoystickButton(m_driver,11);
    private final JoystickButton shifter = new JoystickButton(m_driver, 12);
-   /*m_arcade Buttons Controller */
-   //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
 
-   /* Subsystems */
-public final static grabber grabber = new grabber();
-public final static arm arm = new arm();
-public final static driveTrain driveTrain = new driveTrain();
-public final static gearShift gearShift = new gearShift();
+/* Subsystems */
+   public final static grabber grabber = new grabber();
+   public final static arm arm = new arm();
+   public final static driveTrain driveTrain = new driveTrain();
+   public final static gearShift gearShift = new gearShift();
    public RobotContainer() {
 //configures button bindings
 configureButtonBindings();

@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class armManual extends CommandBase {
-    //@SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
     public armManual() {
         addRequirements(Robot.arm);
@@ -31,9 +30,4 @@ public class armManual extends CommandBase {
         Robot.arm.stop();
     }
 
-    /* @Override
-    protected void interrupted() {
-        end();
-    }
-*/
 }

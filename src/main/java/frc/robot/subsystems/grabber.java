@@ -12,14 +12,9 @@ public class grabber extends SubsystemBase {
   DoubleSolenoid grabSolenoid = Constants.grabSolenoid;
 
 
-public void grabDown() {
-  grabSolenoid.set(Value.kReverse);
-  
-}
-public void grabUp() {
-  grabSolenoid.set(Value.kForward);
-  
-}  
+public void grabberToggle(Value value) {
+  grabSolenoid.set(value);
+ }
 }
 
 

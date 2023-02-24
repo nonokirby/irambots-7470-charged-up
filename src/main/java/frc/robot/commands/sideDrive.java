@@ -29,12 +29,5 @@ public class sideDrive extends CommandBase {
   public void end(boolean interrupted) {
     Robot.sideSwipe.stop();
   }
-
-  // Called when another command which addRequirements one or more of the same
-  // subsystems is scheduled to run
-/*   @Override
-  protected void interrupted() {
-    end();
-  } */
 }
 

@@ -7,29 +7,20 @@
 
 package frc.robot.subsystems;
 
-//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-//import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 public class arm extends SubsystemBase {
 
     private final WPI_VictorSPX armMotorVictorSPX = Constants.armMotor;
-    //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    
 
-
-
-    //armWich makes the motors run to lift up or lower the arm 
-    public void armWinch(double speed) {
+    public void m_armWinch(double speed) {
         armMotorVictorSPX.set(speed);
     }
     
-    //Encoder commands
     public void resetEncoder() {
         armMotorVictorSPX.setSelectedSensorPosition(0);
     }
@@ -37,7 +28,12 @@ public class arm extends SubsystemBase {
     public double getArmEncoder() {
         return armMotorVictorSPX.getSelectedSensorPosition();
     }
-    public void moveArm(double speed){
+    public void armMove(speed) {
+        directionalMotorVictorSPX.set(speed);
+    }
+
+    public void armWinch(double speed) {
+
         if(speed < 0 && getArmEncoder() <= 2500){
           armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
         } else if(speed > 0 && getArmEncoder() >= -28512){
@@ -46,5 +42,6 @@ public class arm extends SubsystemBase {
           else {
               armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
           }
-    }// -29398.000000
+    }
+    // -29398.000000
 }
