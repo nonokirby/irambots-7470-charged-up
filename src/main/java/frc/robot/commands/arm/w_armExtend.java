@@ -5,13 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armUpLimited extends CommandBase {
+public class w_armExtend extends CommandBase {
 
- public armUpLimited() { 
+ public w_armExtend() { 
    addRequirements(Robot.arm);
   }
 
@@ -27,6 +27,6 @@ public class armUpLimited extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    Robot.arm.stop();
+    Robot.arm.armWinch(0);
   }
 }

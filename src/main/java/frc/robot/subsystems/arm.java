@@ -9,19 +9,19 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class arm extends SubsystemBase {
 
     private final WPI_VictorSPX armMotorVictorSPX = Constants.armMotor;
+    private final WPI_VictorSPX directionalMotorVictorSPX = Constants.directionalMotor;
 
     public void mw_armWinch(double speed) {
         armMotorVictorSPX.set(speed);
     }
 
-    public void armMove(speed) {
+    public void armMove(double speed) {
         directionalMotorVictorSPX.set(speed);
     }
 

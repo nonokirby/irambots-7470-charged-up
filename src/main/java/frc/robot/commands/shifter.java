@@ -11,10 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class shifter extends CommandBase {
   
-  public shifter () {
+  public shifter() {
     // Use addRequirements() here to declare subsystem dependencies.
     //addRequirements(Robot.gearShift);
-    
   }
 
   // Called when the command is initially scheduled.

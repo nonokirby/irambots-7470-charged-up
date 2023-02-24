@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -18,7 +18,7 @@ public class r_armFoward extends CommandBase {
 
   @Override
   public void execute() {
-    Robot.armDirectional.armRight();
+    Robot.arm.armMove(1);
   }
 
   @Override
@@ -28,6 +28,6 @@ public class r_armFoward extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    Robot.armDirectional.stop();
+    Robot.arm.armMove(0);
   }
 }

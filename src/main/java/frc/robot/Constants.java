@@ -11,18 +11,12 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-
 import com.kauailabs.navx.frc.*;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
-//import edu.wpi.first.wpilibj.motorcontrol.Spark;
-//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import frc.robot.subsystems.armDirectional;
-
 
 /**
  * The Constants is a mapping from the ports sensors and actuators are wired into
@@ -59,37 +53,26 @@ public class Constants {
   // Define Differential Drive
 
   public static DifferentialDrive driveTrainDifferentialDrive;
-
+  // Define Rest of the motors
   public static WPI_VictorSPX leftMotor;
-  public static WPI_VictorSPX cargoMotor;
-  public static WPI_VictorSPX shooterMotor;
+  public static WPI_VictorSPX rightMotor;;
   public static WPI_VictorSPX sideMotor;
   public static WPI_VictorSPX directionalMotor;
-  public static WPI_VictorSPX rightMotor;
-  public static WPI_VictorSPX hookMotor;
-  public static WPI_VictorSPX rollerMotor;
+  public static WPI_VictorSPX armMotor;
   public static DoubleSolenoid grabSolenoid;
   public static DoubleSolenoid shiftSolenoid;
   public static WPI_VictorSPX spinMotor;
-
-public static WPI_VictorSPX armMotor;
+ 
 
   public static void init() {
 
     ahrs = new AHRS(SerialPort.Port.kMXP);
-
-   
-    
-
- 
-    
 
 
     // Define the ports the 'LEFT' Motor Controllers are Connected to the RoboRIO
     // (CAN or PWM) If CAN additional steps are required to set address port on
     // Motor Controller
 
-   
 
 // For Victor SPX
     driveTrainLeftMotorA = new WPI_VictorSPX(3);
@@ -112,21 +95,6 @@ public static WPI_VictorSPX armMotor;
 //Define what Speed Controller Groups are part of the Differential Drive
   driveTrainDifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
 
-
-
-
-
-  //hookMotor = new WPI_VictorSPX(5);
-
-  rollerMotor = new WPI_VictorSPX(6);
-  rollerMotor.set(0.25);
-
-  spinMotor = new WPI_VictorSPX(6);
-  spinMotor.set(0.25);
-
-  cargoMotor = new WPI_VictorSPX(6);
-
-  shooterMotor = new WPI_VictorSPX(7);
 
   sideMotor = new WPI_VictorSPX(8);
 
@@ -252,6 +220,4 @@ public static WPI_VictorSPX armMotor;
  //Arm Encoder Distance
  //SmartDashboard.putNumber("Arm Distance", Constants.armMotor.getSelectedSensorPosition());
   }
-
-
 }

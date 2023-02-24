@@ -13,8 +13,8 @@ public class grabber extends SubsystemBase {
 
 
 public void grabberToggle(Value value) {
-  grabSolenoid.set(value);
- }
+  
+}
 }
 
 

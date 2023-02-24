@@ -5,15 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armRetract extends CommandBase {
+public class w_armRetract extends CommandBase {
     //@SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
-    public armRetract() {
+    public w_armRetract() {
         addRequirements(Robot.arm);
     }
 
@@ -28,7 +28,7 @@ public class armRetract extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.arm.stop();
+        Robot.arm.armWinch(0);
     }
 
 }

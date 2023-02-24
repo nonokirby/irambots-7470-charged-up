@@ -7,20 +7,19 @@
 
 package frc.robot;
 //import java.util.concurrent.TimeUnit;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.DriveToPort;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,11 +34,7 @@ import frc.robot.subsystems.*;
   public final Joystick m_arcade = new Joystick(0);
   public static driveTrain driveTrain;
   public static SequentialCommandGroup autonomousForward;
-  public static armWest armWest;
-  public static armEast armEast;
   public static shifter shifter;
-  public static armManual armManual;
-  public static frc.robot.subsystems.armDirectional armDirectional;
   public static frc.robot.subsystems.grabber grabber;
   public static gearShift gearShift;
   public static RobotContainer RobotContainer;
@@ -47,8 +42,8 @@ import frc.robot.subsystems.*;
   public static sideSwipe sideSwipe;
   public static Command m_autonomousCommand;
   public static DriveToPort DriveToPort;
-  public static grabUp grabUp;
-  public static grabDown grabDown;
+  public static clawGrab grabUp;
+  public static clawRelease grabDown;
   public static Object wheelShooter;
   SendableChooser<CommandBase> m_chooser = new SendableChooser<>();
 
@@ -67,7 +62,6 @@ import frc.robot.subsystems.*;
     driveTrain = new driveTrain();
     grabber = new grabber();
     arm = new arm();
-    armDirectional = new armDirectional();
     RobotContainer = new RobotContainer();
     sideSwipe = new sideSwipe();
     gearShift = new gearShift();
@@ -102,7 +96,7 @@ import frc.robot.subsystems.*;
    */
   @Override
   public void disabledInit() {
-    Robot.grabber.grabDown();
+    Robot.grabber.grabberToggle(Value.kOff);
     Robot.gearShift.shift(true);
   }
 
@@ -134,15 +128,10 @@ import frc.robot.subsystems.*;
      * ExampleCommand(); break; }
      */
 
-    
-
     // schedule the autonomous command (example)
     // Scheduler.getInstance().add(drive);
     //CommandScheduler.getInstance().add(new driveManual() {
       CommandScheduler.getInstance().schedule(new driveManual() {
-        //CommandScheduler.getInstance().schedule(new DriveToPort() {
-        //double timeElapsed;
-    
       @Override
       public void initialize() {
       }
@@ -218,8 +207,7 @@ import frc.robot.subsystems.*;
    */
   @Override
   public void testPeriodic() {
-    Robot.grabber.grabDown();
-    Robot.grabber.grabUp();
+  
 
   }
 
@@ -228,4 +216,3 @@ import frc.robot.subsystems.*;
   }
 
 }
-
