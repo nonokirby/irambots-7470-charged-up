@@ -28,6 +28,9 @@ public class driveManual extends CommandBase {
     if( speed > -0.05 && speed < 0.05){
       speed = 0;
     }
+    if( speed > -0.05 && speed < 0.05){
+      speed = 0;
+    }
 //creates internal dead zone within code without affecting the controller
     if( rotation > -0.05 && rotation < 0.05){
 

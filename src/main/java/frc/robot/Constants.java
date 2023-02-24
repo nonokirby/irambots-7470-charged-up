@@ -69,7 +69,7 @@ public class Constants {
   public static WPI_VictorSPX hookMotor;
   public static WPI_VictorSPX rollerMotor;
   public static DoubleSolenoid grabSolenoid;
-  public static DoubleSolenoid releaseSolenoid;
+  public static DoubleSolenoid shiftSolenoid;
   public static WPI_VictorSPX spinMotor;
 
 public static WPI_VictorSPX armMotor;
@@ -132,6 +132,7 @@ public static WPI_VictorSPX armMotor;
 
   directionalMotor = new WPI_VictorSPX(10);
   grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
+  shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
   armMotor = new WPI_VictorSPX(5);
 
 //Motor Controller Parameters

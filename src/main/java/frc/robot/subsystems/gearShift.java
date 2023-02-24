@@ -6,20 +6,22 @@ package frc.robot.subsystems;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class grabber extends SubsystemBase {
-  DoubleSolenoid grabSolenoid = Constants.grabSolenoid;
+public class gearShift extends SubsystemBase {
+  DoubleSolenoid shiftSolenoid = Constants.shiftSolenoid;
 
-
-public void grabDown() {
-  grabSolenoid.set(Value.kReverse);
-  
+//True is high false is low
+public void shift(boolean pos) {
+ if (pos == true) {
+  shiftSolenoid.set(Value.kReverse);
+ }
+ else {
+ shiftSolenoid.set(Value.kForward);
+ }
 }
-public void grabUp() {
-  grabSolenoid.set(Value.kForward);
-  
-}  
 }
 
 

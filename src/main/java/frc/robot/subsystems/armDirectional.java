@@ -29,7 +29,5 @@ directionalMotorVictorSPX.set(0.3);
   }
   public void stop() {
     directionalMotorVictorSPX.set(0.0);
-
-
   }
 }

@@ -5,29 +5,36 @@
 package frc.robot.commands;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.grabber;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class grabDown extends CommandBase {
+public class shifter extends CommandBase {
   
-  public grabDown(grabber grabber) {
+  public shifter () {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.grabber);
-
+    //addRequirements(Robot.gearShift);
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  Robot.grabber.grabDown();
-  System.out.print("grabDown ");
+  public void execute() {
+  double lever = Robot.RobotContainer.m_driver.getRawAxis(3);
+  //High
+  System.out.print("shifter");
+  if (lever >= 0.5){
+    Robot.gearShift.shift(false);
+  }
+  //Low
+  else if (lever <= -0.5){
+    Robot.gearShift.shift(true);
+  }
+ }
+
+  public boolean isFinished(){
+    return false;
   }
   // Make this return true when this Command no longer needs to run execute()
-  @Override
-  public boolean isFinished() {
-    return true;
-  }
 }
 
