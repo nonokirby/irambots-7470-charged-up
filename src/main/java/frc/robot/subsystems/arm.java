@@ -24,27 +24,21 @@ public class arm extends SubsystemBase {
 
 
 
-    //armVert makes the motors run to lift up the arm 
-    public void armVert() {
-        armMotorVictorSPX.set(-1.0);
+    //armWich makes the motors run to lift up or lower the arm 
+    public void armWinch(double speed) {
+        armMotorVictorSPX.set(speed);
     }
-    //armDown makes the motor run in reverse to bring the arm down
-    public void armDown() {
-        Robot.driveTrain.driveCurvature(1.0,0,false);
-    }
-    public void stop() {
-        armMotorVictorSPX.set(0.0);
-    }
+    
     //Encoder commands
     public void resetEncoder() {
         armMotorVictorSPX.setSelectedSensorPosition(0);
     }
+
     public double getArmEncoder() {
         return armMotorVictorSPX.getSelectedSensorPosition();
     }
     public void moveArm(double speed){
         if(speed < 0 && getArmEncoder() <= 2500){
-            //this is a test of github and wether or not it is stupid
           armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
         } else if(speed > 0 && getArmEncoder() >= -28512){
           armMotorVictorSPX.set(ControlMode.PercentOutput, speed);
