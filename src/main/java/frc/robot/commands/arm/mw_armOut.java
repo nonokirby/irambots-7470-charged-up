@@ -9,15 +9,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class mw_armIn extends CommandBase {
+public class mw_armOut extends CommandBase {
 
-    public mw_armIn() {
+    public mw_armOut() {
         addRequirements(Robot.arm);
     }
 
     @Override
     public void execute() {
-        Robot.arm.armDown();
+        Robot.arm.mw_armWinch(-1);
     }
     @Override
     public boolean isFinished() {
@@ -26,6 +26,6 @@ public class mw_armIn extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.arm.stop();
+        Robot.arm.mw_armWinch(0);
     }
 }

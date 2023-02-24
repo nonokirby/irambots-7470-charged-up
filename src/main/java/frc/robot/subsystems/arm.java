@@ -20,14 +20,7 @@ public class arm extends SubsystemBase {
     public void mw_armWinch(double speed) {
         armMotorVictorSPX.set(speed);
     }
-    
-    public void resetEncoder() {
-        armMotorVictorSPX.setSelectedSensorPosition(0);
-    }
 
-    public double getArmEncoder() {
-        return armMotorVictorSPX.getSelectedSensorPosition();
-    }
     public void armMove(speed) {
         directionalMotorVictorSPX.set(speed);
     }
@@ -42,6 +35,14 @@ public class arm extends SubsystemBase {
           else {
               armMotorVictorSPX.set(ControlMode.PercentOutput, 0);
           }
+    }
+    
+        public void resetEncoder() {
+        armMotorVictorSPX.setSelectedSensorPosition(0);
+    }
+
+    public double getArmEncoder() {
+        return armMotorVictorSPX.getSelectedSensorPosition();
     }
     // -29398.000000
 }
