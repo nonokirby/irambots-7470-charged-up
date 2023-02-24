@@ -6,13 +6,12 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armOut extends CommandBase {
+public class r_armBackward extends CommandBase {
 
- public armOut() { 
+ public r_armBackward() { 
    addRequirements(Robot.arm);
   }
 

@@ -17,7 +17,7 @@ public class arm extends SubsystemBase {
 
     private final WPI_VictorSPX armMotorVictorSPX = Constants.armMotor;
 
-    public void m_armWinch(double speed) {
+    public void mw_armWinch(double speed) {
         armMotorVictorSPX.set(speed);
     }
     

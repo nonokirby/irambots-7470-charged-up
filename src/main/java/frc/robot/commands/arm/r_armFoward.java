@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armFoward extends CommandBase {
+public class r_armFoward extends CommandBase {
 
- public armIn() { 
+ public r_armFoward() { 
    addRequirements(Robot.arm);
   }
 

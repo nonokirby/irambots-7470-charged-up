@@ -11,22 +11,22 @@ import frc.robot.Robot;
 
 public class armExtend extends CommandBase {
 
- public armExtend() { 
-   addRequirements(Robot.arm);
-  }
+    public armExtend() { 
+        addRequirements(Robot.arm);
+    }
 
-  @Override
-  public void execute() {
-    Robot.arm.move(1);
-  }
+    @Override
+    public void execute() {
+        Robot.arm.move(1);
+    }
 
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 
-  @Override
-  public void end() {
-    Robot.arm.
-  }
+    @Override
+    public void end(boolean interupted) {
+        Robot.arm.mw_armWinch
+    }
 }

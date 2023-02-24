@@ -19,7 +19,7 @@ public class armRetract extends CommandBase {
 
     @Override
     public void execute (){
-        Robot.arm.armDown();
+        Robot.arm.armWinch(1);
     }
     @Override
       public boolean isFinished() {
@@ -30,10 +30,5 @@ public class armRetract extends CommandBase {
     public void end(boolean interrupted) {
         Robot.arm.stop();
     }
-
-    /* @Override
-    protected void interrupted() {
-        end();
-    } */
 
 }

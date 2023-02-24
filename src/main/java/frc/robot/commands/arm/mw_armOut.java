@@ -6,18 +6,17 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armManual extends CommandBase {
+public class mw_armIn extends CommandBase {
 
-    public armManual() {
+    public mw_armIn() {
         addRequirements(Robot.arm);
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         Robot.arm.armDown();
     }
     @Override
@@ -29,5 +28,4 @@ public class armManual extends CommandBase {
     public void end(boolean interrupted) {
         Robot.arm.stop();
     }
-
 }
