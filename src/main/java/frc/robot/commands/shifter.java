@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -19,15 +20,15 @@ public class shifter extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
-  double lever = Robot.RobotContainer.m_driver.getRawAxis(3);
+  double lever = RobotContainer.m_driver.getRawAxis(3);
   //High
   System.out.print("shifter");
   if (lever >= 0.5){
-    Robot.gearShift.shift(false);
+    RobotContainer.gearShift.shift(false);
   }
   //Low
   else if (lever <= -0.5){
-    Robot.gearShift.shift(true);
+    RobotContainer.gearShift.shift(true);
   }
  }
 

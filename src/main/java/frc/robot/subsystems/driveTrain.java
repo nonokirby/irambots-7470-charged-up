@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.commands.driveManual;
 
 //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -41,7 +40,7 @@ public Object driveArcade;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    Robot.driveTrain.setDefaultCommand(new driveManual());
+    setDefaultCommand(new driveManual());
   }
   public MotorControllerGroup getLeftMotors() {
     return leftMotors;

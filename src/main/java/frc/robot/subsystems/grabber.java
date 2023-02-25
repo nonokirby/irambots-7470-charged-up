@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class grabber extends SubsystemBase {
-  DoubleSolenoid grabSolenoid = Constants.grabSolenoid;
+  DoubleSolenoid s_grabSolenoid = Constants.s_grabSolenoid;
+  DoubleSolenoid l_grabSolenoid = Constants.l_grabsolenoid;
 
 
 public void grabberToggle(Value value) {

@@ -1,12 +1,12 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 //import frc.robot.RobotContainer;
+import frc.robot.RobotContainer;
 
 public class driveManual extends CommandBase {
         public driveManual() {
-        addRequirements(Robot.driveTrain);
+        addRequirements(RobotContainer.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,9 +21,9 @@ public class driveManual extends CommandBase {
         //Curvature Drive//
         ////////////////////
         //TODO edit joystick mapping for the drivetrain
-    double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
-    double rotation = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_driver.getRawAxis(1);
-    boolean quickTurn = speed > -0.15 && speed < 0.15;
+    double speed = -RobotContainer.m_arcade.getRawAxis(2);
+    double rotation = -RobotContainer.m_arcade.getRawAxis(1);
+    boolean quickTurn = true;
 //creates internal dead zone within code without affecting the controller
     if( speed > -0.1 && speed < 0.1){
       speed = 0;
@@ -37,7 +37,7 @@ public class driveManual extends CommandBase {
 
         rotation = 0;
       }
-    Robot.driveTrain.driveCurvature(-speed, rotation, quickTurn);
+    RobotContainer.driveTrain.driveCurvature(-speed, rotation, quickTurn);
 
     }
 

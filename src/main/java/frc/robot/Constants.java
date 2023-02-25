@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.kauailabs.navx.frc.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -59,8 +60,9 @@ public class Constants {
   public static WPI_VictorSPX sideMotor;
   public static WPI_VictorSPX directionalMotor;
   public static WPI_VictorSPX armMotor;
-  public static DoubleSolenoid grabSolenoid;
-  public static DoubleSolenoid shiftSolenoid;
+  public static DoubleSolenoid s_grabSolenoid;
+  public static DoubleSolenoid l_grabsolenoid;
+  public static Solenoid shiftSolenoid;
   public static WPI_VictorSPX spinMotor;
  
 
@@ -75,8 +77,8 @@ public class Constants {
 
 
 // For Victor SPX
-    driveTrainLeftMotorA = new WPI_VictorSPX(3);
-    driveTrainLeftMotorB = new WPI_VictorSPX(4);
+    driveTrainLeftMotorA = new WPI_VictorSPX(2);
+    driveTrainLeftMotorB = new WPI_VictorSPX(3);
 
 
 //Define what motors are part of the 'LEFT' Speed Controller Group  
@@ -84,8 +86,8 @@ public class Constants {
 
 
   //For Victor SPX
-    driveTrainRightMotorA = new WPI_VictorSPX(1);
-    driveTrainRightMotorB = new WPI_VictorSPX(2);
+    driveTrainRightMotorA = new WPI_VictorSPX(0);
+    driveTrainRightMotorB = new WPI_VictorSPX(1);
 
   // Define the ports the 'RIGHT' Motor Controllers are Connected to the RoboRIO (CAN or PWM)  If CAN additional steps are required to set address port on Motor Controller
 
@@ -99,8 +101,8 @@ public class Constants {
   sideMotor = new WPI_VictorSPX(8);
 
   directionalMotor = new WPI_VictorSPX(10);
-  grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-  shiftSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+  s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
+  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
   armMotor = new WPI_VictorSPX(5);
 
 //Motor Controller Parameters

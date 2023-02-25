@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.claw.clawGrabSquare;
+import frc.robot.commands.claw.clawReleaseSquare;
 import frc.robot.subsystems.*;
 /*
  * This class is the glue that binds the controls on the physical operator
@@ -16,13 +18,13 @@ import frc.robot.subsystems.*;
 
  public class RobotContainer {
    //controllers
-   public final Joystick m_driver = new Joystick(1);
-   public final Joystick m_arcade = new Joystick(0);
+   public final static Joystick m_driver = new Joystick(1);
+   public final static Joystick m_arcade = new Joystick(0);
    
    /*m_driver Buttons Controller */
    private final JoystickButton clawRelease = new JoystickButton(m_driver,6);
    //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
-   private final JoystickButton clawGrab = new JoystickButton(m_driver, 5);
+   private final JoystickButton clawGrabSquare = new JoystickButton(m_driver, 5);
    private final JoystickButton mw_armIn = new JoystickButton(m_driver,11);
    private final JoystickButton shifter = new JoystickButton(m_driver, 12);
    /*m_arcade Buttons Controller */
@@ -33,19 +35,21 @@ public final static grabber grabber = new grabber();
 public final static arm arm = new arm();
 public final static driveTrain driveTrain = new driveTrain();
 public final static gearShift gearShift = new gearShift();
+public final static sideSwipe sideSwipe = new sideSwipe();
    public RobotContainer() {
 //configures button bindings
 configureButtonBindings();
-Robot.driveTrain.setDefaultCommand(new driveManual());
+driveTrain.setDefaultCommand(new driveManual());
+sideSwipe.setDefaultCommand(new sideDrive());
  }
 
 private void configureButtonBindings() {
 /* Driver 1 Buttons */
-  clawRelease.whileTrue(new clawRelease(grabber));
+  clawRelease.whileTrue(new clawReleaseSquare(grabber));
   mw_armIn.whileTrue(new frc.robot.commands.arm.mw_armIn());
   /* Driver 2 Buttons */
-  clawGrab.whileTrue(new clawGrab(grabber));
-  shifter.whileTrue(new shifter());
+  clawGrabSquare.whileTrue(new clawGrabSquare(grabber));
+  shifter.whileFalse(new shifter());
   System.out.print("configureButtonBindings");
 //driver controller
 //arm limited

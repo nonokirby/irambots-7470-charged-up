@@ -1,182 +1,78 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-//import java.util.concurrent.TimeUnit;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
+
+
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.autonomous.DriveToPort;
-import edu.wpi.first.wpilibj2.command.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the name of this class or
+ * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+public class Robot extends TimedRobot {
+  //public static CTREConfigs ctreConfigs;
 
-@SuppressWarnings("unused") public class Robot extends TimedRobot {
-  public final Joystick m_driver = new Joystick(1);
-  public final Joystick m_arcade = new Joystick(0);
-  public static driveTrain driveTrain;
-  public static SequentialCommandGroup autonomousForward;
-  public static shifter shifter;
-  public static frc.robot.subsystems.grabber grabber;
-  public static gearShift gearShift;
-  public static RobotContainer RobotContainer;
-  public static arm arm;
-  public static sideSwipe sideSwipe;
-  public static Command m_autonomousCommand;
-  public static DriveToPort DriveToPort;
-  public static clawGrab grabUp;
-  public static clawRelease grabDown;
-  public static Object wheelShooter;
-  SendableChooser<CommandBase> m_chooser = new SendableChooser<>();
+  private Command m_autonomousCommand;
 
+  private RobotContainer m_robotContainer;
 
   /**
-   * This function is run when the robot is first started up and should be used
-   * for any initialization code.
+   * This function is run when the robot is first started up and should be used for any
+   * initialization code.
    */
   @Override
   public void robotInit() {
-    new Thread(()-> {
-      UsbCamera camera = CameraServer.startAutomaticCapture();
-    }).start();
-    // -31820.000000
-    Constants.init();
-    driveTrain = new driveTrain();
-    grabber = new grabber();
-    arm = new arm();
-    RobotContainer = new RobotContainer();
-    sideSwipe = new sideSwipe();
-    gearShift = new gearShift();
-
-    // m_chooser.addDefault("Default Auto", new autonomous());
-    // chooser.addObject("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-    autonomousForward = new SequentialCommandGroup();
-    m_autonomousCommand = new DriveToPort();
+    //ctreConfigs = new CTREConfigs();
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    m_robotContainer = new RobotContainer();
+    //m_robotContainer.m_Arm.setPosition(0);
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use this for
-   * items like diagnostics that you want ran during disabled, autonomous,
-   * teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for items like
+   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
    *
-   * <p>
-   * This runs after the mode specific periodic functions, but before LiveWindow
-   * and SmartDashboard integrated updating.
+   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
-    /*NEVER DELETE THIS OR WE WILL DELETE YOU AND THE WHOLE FRESHMEN CLASS */
-    CommandScheduler.getInstance().run();
-
-  }
- 
-  /**
-   * This function is called once each time the robot enters Disabled mode. You
-   * can use it to reset any subsystem information you want to clear when the
-   * robot is disabled.
-   */
-  @Override
-  public void disabledInit() {
-    Robot.grabber.grabberToggle(Value.kOff);
-    Robot.gearShift.shift(true);
-  }
-
-  @Override
-  public void disabledPeriodic() {
+    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
+    // commands, running already-scheduled commands, removing finished or interrupted commands,
+    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
   }
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable chooser
-   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-   * remove all of the chooser code and uncomment the getString code to get the
-   * auto name from the text box below the Gyro
-   *
-   * <p>
-   * You can add additional auto modes by adding additional commands to the
-   * chooser code above (like the commented example) or additional comparisons to
-   * the switch structure below with additional strings & commands.
-   */
+  /** This function is called once each time the robot enters Disabled mode. */
+  @Override
+  public void disabledInit() {}
+
+  @Override
+  public void disabledPeriodic() {}
+
+  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-     m_autonomousCommand = m_chooser.getSelected();
-     //Constants.armMotor.setSelectedSensorPosition(0);
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-     * switch(autoSelected) { case "My Auto": autonomousCommand = new
-     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-     * ExampleCommand(); break; }
-     */
+    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
-    // Scheduler.getInstance().add(drive);
-    //CommandScheduler.getInstance().add(new driveManual() {
-      CommandScheduler.getInstance().schedule(new driveManual() {
-      @Override
-      public void initialize() {
-      }
-
-
-
-      @Override
-      public void execute() {
-        double startTime = Timer.getMatchTime();
-        //double time = Timer.getFPGATimestamp();
-        if (startTime >= 26.0) {
-           driveTrain.tankDrive(-0.4, 0.4);
-        }
-        else if (startTime >= 22.0 && startTime < 26)
-        {
-          driveTrain.tankDrive(-0.4,-0.4);
-        }
-        else if (startTime >= 18.0)
-        {
-          driveTrain.tankDrive(0.4,-0.4);
-        }
-        else if (startTime >= 14.0 && startTime < 18)
-        {
-          driveTrain.tankDrive(0.4,0.4);
-        }
-        else {
-          driveTrain.tankDrive(-0.0,0.0);
-        }
-
-    };
-
-        @Override
-        public boolean isFinished() {
-          return false;
-        }
-      });
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
     }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
   }
+
+  /** This function is called periodically during autonomous. */
+  @Override
+  public void autonomousPeriodic() {}
 
   @Override
   public void teleopInit() {
@@ -184,35 +80,22 @@ import frc.robot.subsystems.*;
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-  } 
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+  }
 
-  /**
-   * This function is called periodically during operator control.
-   */
+  /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    double p = SmartDashboard.getNumber("P Gain", 0);
-    double i = SmartDashboard.getNumber("I Gain", 0);
-    double d = SmartDashboard.getNumber("D Gain", 0);
-    double iz = SmartDashboard.getNumber("I Zone", 0);
-    double ff = SmartDashboard.getNumber("Feed Forward", 0);
-    double max = SmartDashboard.getNumber("Max Output", 0);
-    double min = SmartDashboard.getNumber("Min Output", 0);
-    double rotations = SmartDashboard.getNumber("Set Rotations", 0);
+  public void teleopPeriodic() {}
 
-  }
-
-  /**
-   * This function is called periodically during test mode.
-   */
   @Override
-  public void testPeriodic() {
-  
-
+  public void testInit() {
+    // Cancels all running commands at the start of test mode.
+    CommandScheduler.getInstance().cancelAll();
   }
 
-  public void SequentialCommandGroup() {
-
-  }
-
+  /** This function is called periodically during test mode. */
+  @Override
+  public void testPeriodic() {}
 }

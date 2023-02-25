@@ -8,16 +8,17 @@
 package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class r_armBackward extends CommandBase {
 
  public r_armBackward() { 
-   addRequirements(Robot.arm);
+   addRequirements(RobotContainer.arm);
   }
 
   @Override
   public void execute() {
-    Robot.arm.armMove(1);
+    RobotContainer.arm.armMove(1);
   }
 
   @Override
@@ -27,6 +28,6 @@ public class r_armBackward extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    Robot.arm.armMove(0);
+    RobotContainer.arm.armMove(0);
   }
 }

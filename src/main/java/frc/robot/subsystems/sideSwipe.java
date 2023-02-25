@@ -8,8 +8,8 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class sideSwipe extends SubsystemBase {
 
@@ -22,7 +22,10 @@ public sideSwipe() {
   
   
   public void swipe() {
-    sideMotorVictorSPX.set(Robot.RobotContainer.m_arcade.getRawAxis(0));
+    double speed = RobotContainer.m_driver.getRawAxis(1);
+    if (speed >= 0.05 || speed <= -0.05){
+      sideMotorVictorSPX.set(speed);
+    }
 
 }
 public void stop() {

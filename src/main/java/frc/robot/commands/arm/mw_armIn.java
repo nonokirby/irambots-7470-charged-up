@@ -8,16 +8,17 @@
 package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class mw_armIn extends CommandBase {
 
     public mw_armIn() { 
-        addRequirements(Robot.arm);
+        addRequirements(RobotContainer.arm);
     }
 
     @Override
     public void execute() {
-        Robot.arm.mw_armWinch(1);
+        RobotContainer.arm.mw_armWinch(1);
     }
 
     @Override
@@ -27,6 +28,6 @@ public class mw_armIn extends CommandBase {
 
     @Override
     public void end(boolean interupted) {
-        Robot.arm.mw_armWinch(0);
+        RobotContainer.arm.mw_armWinch(0);
     }
 }
