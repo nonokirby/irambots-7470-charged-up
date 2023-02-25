@@ -45,4 +45,11 @@ public class arm extends SubsystemBase {
         return armMotorVictorSPX.getSelectedSensorPosition();
     }
     // -29398.000000
+    //positional points
+    public void p_armLength(){
+
+    }
+    public void p_armAngle(){
+        
+    }
 }

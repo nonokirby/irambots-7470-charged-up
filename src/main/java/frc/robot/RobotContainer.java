@@ -45,7 +45,7 @@ private void configureButtonBindings() {
   mw_armIn.whileTrue(new frc.robot.commands.arm.mw_armIn());
   /* Driver 2 Buttons */
   clawGrab.whileTrue(new clawGrab(grabber));
-  shifter.whileFalse(new shifter());
+  shifter.whileTrue(new shifter());
   System.out.print("configureButtonBindings");
 //driver controller
 //arm limited

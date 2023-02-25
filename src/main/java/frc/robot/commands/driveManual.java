@@ -22,17 +22,14 @@ public class driveManual extends CommandBase {
         ////////////////////
         //TODO edit joystick mapping for the drivetrain
     double speed = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_arcade.getRawAxis(2) - -Robot.RobotContainer.m_driver.getRawAxis(2);
-    double rotation = Robot.RobotContainer.m_arcade.getRawAxis(0) - Robot.RobotContainer.m_driver.getRawAxis(1);
+    double rotation = Robot.RobotContainer.m_arcade.getRawAxis(1) - Robot.RobotContainer.m_driver.getRawAxis(1);
     boolean quickTurn = speed > -0.15 && speed < 0.15;
 //creates internal dead zone within code without affecting the controller
-    if( speed > -0.05 && speed < 0.05){
-      speed = 0;
-    }
-    if( speed > -0.05 && speed < 0.05){
+    if( speed > -0.1 && speed < 0.1){
       speed = 0;
     }
 //creates internal dead zone within code without affecting the controller
-    if( rotation > -0.05 && rotation < 0.05){
+    if( rotation > -0.1 && rotation < 0.1){
 
       rotation = 0;
     }
