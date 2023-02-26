@@ -76,33 +76,14 @@ public class Constants {
     // Motor Controller
 
 
-// For Victor SPX
-    driveTrainLeftMotorA = new WPI_VictorSPX(2);
-    driveTrainLeftMotorB = new WPI_VictorSPX(3);
 
 
-//Define what motors are part of the 'LEFT' Speed Controller Group  
-  driveTrainLeftMotors = new MotorControllerGroup(driveTrainLeftMotorA, driveTrainLeftMotorB/*, driveTrainLeftMotorC*/);
 
-
-  //For Victor SPX
-    driveTrainRightMotorA = new WPI_VictorSPX(0);
-    driveTrainRightMotorB = new WPI_VictorSPX(1);
-
-  // Define the ports the 'RIGHT' Motor Controllers are Connected to the RoboRIO (CAN or PWM)  If CAN additional steps are required to set address port on Motor Controller
-
-//Define what motors are part of the 'RIGHT' Speed Controller Group  
-  driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB/*, driveTrainRightMotorC*/);
-
-//Define what Speed Controller Groups are part of the Differential Drive
-  driveTrainDifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
-
-
-  sideMotor = new WPI_VictorSPX(8);
+  
 
   directionalMotor = new WPI_VictorSPX(10);
   s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
+
   armMotor = new WPI_VictorSPX(5);
 
 //Motor Controller Parameters

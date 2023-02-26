@@ -21,8 +21,8 @@ public class driveManual extends CommandBase {
         //Curvature Drive//
         ////////////////////
         //TODO edit joystick mapping for the drivetrain
-    double speed = -RobotContainer.m_arcade.getRawAxis(2);
-    double rotation = -RobotContainer.m_arcade.getRawAxis(1);
+    double speed = -RobotContainer.m_driver.getRawAxis(2);
+    double rotation = -RobotContainer.m_driver.getRawAxis(1);
     boolean quickTurn = true;
 //creates internal dead zone within code without affecting the controller
     if( speed > -0.1 && speed < 0.1){

@@ -14,7 +14,7 @@ public class shifter extends CommandBase {
   
   public shifter() {
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(Robot.gearShift);
+    addRequirements(RobotContainer.gearShift);
   }
 
   // Called when the command is initially scheduled.

@@ -17,6 +17,12 @@ import frc.robot.subsystems.*;
  */
 
  public class RobotContainer {
+     /* Subsystems */
+  public final static grabber grabber = new grabber();
+  public final static arm arm = new arm();
+  public final static driveTrain driveTrain = new driveTrain();
+  public final static gearShift gearShift = new gearShift();
+  public final static sideSwipe sideSwipe = new sideSwipe();
    //controllers
    public final static Joystick m_driver = new Joystick(1);
    public final static Joystick m_arcade = new Joystick(0);
@@ -30,17 +36,13 @@ import frc.robot.subsystems.*;
    /*m_arcade Buttons Controller */
    //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
 
-   /* Subsystems */
-public final static grabber grabber = new grabber();
-public final static arm arm = new arm();
-public final static driveTrain driveTrain = new driveTrain();
-public final static gearShift gearShift = new gearShift();
-public final static sideSwipe sideSwipe = new sideSwipe();
+
    public RobotContainer() {
 //configures button bindings
 configureButtonBindings();
 driveTrain.setDefaultCommand(new driveManual());
 sideSwipe.setDefaultCommand(new sideDrive());
+gearShift.setDefaultCommand(new shifter());
  }
 
 private void configureButtonBindings() {

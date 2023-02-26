@@ -8,13 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class sideDrive extends CommandBase {
   public sideDrive() {
+    addRequirements(RobotContainer.sideSwipe);
   }
 
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    RobotContainer.sideSwipe.swipe();
+    double speed = RobotContainer.m_driver.getRawAxis(0);
+    if (speed >= 0.1 || speed <= -0.1){
+      RobotContainer.sideSwipe.swipe(speed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
