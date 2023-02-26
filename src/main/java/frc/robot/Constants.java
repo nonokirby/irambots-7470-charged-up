@@ -93,17 +93,6 @@ public class Constants {
 
     ahrs = new AHRS(SerialPort.Port.kMXP);
 
-
-
-
-
-
-
-
-  
-
-  id_directionalMotor = 10;
-
 //Define Options for Differential Drive
   driveTrainDifferentialDrive.setSafetyEnabled(false);
   driveTrainDifferentialDrive.setExpiration(0.1);

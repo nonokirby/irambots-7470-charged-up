@@ -11,18 +11,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class sideSwipe extends SubsystemBase {
 
-  private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(4);
+  private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
 public sideSwipe() {
-  
   }
 
-  
-  
-  
   public void swipe(double speed) {
     sideMotorVictorSPX.set(speed);
-}
-public void stop() {
-  sideMotorVictorSPX.set(0.0);
-}
+  }
+  public void stop() {
+    sideMotorVictorSPX.set(0.0);
+  }
 }

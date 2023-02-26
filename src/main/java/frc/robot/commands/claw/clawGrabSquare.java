@@ -20,7 +20,7 @@ public class clawGrabSquare extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.grabber.grabberToggle(Value.kForward);
+    RobotContainer.grabber.grabberToggle(s_grabSolenoid,value.kForward);
   }
 }
 

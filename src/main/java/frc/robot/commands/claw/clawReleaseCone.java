@@ -20,6 +20,7 @@ public class clawReleaseCone extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.grabber.grabberToggle(Value.kReverse);
+    RobotContainer.grabber.grabberToggle(l_grabSolenoid,Value.kReverse);
+    RobotContainer.grabber.grabberToggle(s_grabSolenoid,value.kReverse);
   }
 }

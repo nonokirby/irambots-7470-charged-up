@@ -50,9 +50,9 @@ public class arm extends SubsystemBase {
     // -29398.000000
     //positional points
     public void p_armLength(double length){
-
+      armMotorTalonSRX.set(ControlMode.PercentOutput, 1)
     }
     public void p_armAngle(double angle){
-
+      directionalMotorTalonSRX.set(ControlMode.PercentOutput, 1)
     }
 }

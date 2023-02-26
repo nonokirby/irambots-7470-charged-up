@@ -13,7 +13,8 @@ public class grabber extends SubsystemBase {
   DoubleSolenoid l_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
 
 
-public void grabberToggle(Value value) {
+public void grabberToggle(String Solenoid, Value Value) {
+  
   
 }
 }
