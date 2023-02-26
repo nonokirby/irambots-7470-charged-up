@@ -6,17 +6,25 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import java.net.InterfaceAddress;
+import java.util.Collection;
+import java.util.List;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.kauailabs.navx.frc.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -55,25 +63,38 @@ public class Constants {
 
   public static DifferentialDrive driveTrainDifferentialDrive;
   // Define Rest of the motors
-  public static WPI_VictorSPX leftMotor;
-  public static WPI_VictorSPX rightMotor;;
-  public static WPI_VictorSPX sideMotor;
-  public static WPI_VictorSPX directionalMotor;
-  public static WPI_VictorSPX armMotor;
-  public static DoubleSolenoid s_grabSolenoid;
-  public static DoubleSolenoid l_grabsolenoid;
-  public static Solenoid shiftSolenoid;
-  public static WPI_VictorSPX spinMotor;
- 
+  public static int id_leftMotor_A;
+  public static int id_leftMotor_B;
+  public static int id_rightMotor_A;
+  public static int id_rightMotor_B;
+  public static int id_sideMotor;
+  public static int id_directionalMotor;
+  public static int id_armMotor;
+  public static int id_shiftSolenoid;
+  public static int id_sGrabSolenoidF;
+  public static int id_sGrabSolenoidR;
+  public static int id_lGrabSolenoidF;
+  public static int id_lGrabSolenoidR;
 
   public static void init() {
+    id_leftMotor_A        = 0;
+    id_leftMotor_B        = 1;
+    id_rightMotor_A       = 2;
+    id_rightMotor_B       = 3;
+    id_sideMotor          = 4; 
+    id_directionalMotor   = 13;
+    id_armMotor           = 14;
+    id_shiftSolenoid      = 4;
+    id_sGrabSolenoidF     = 6;
+    id_sGrabSolenoidR     = 7;
+    id_lGrabSolenoidF     = 0;
+    id_lGrabSolenoidR     = 1;
+
 
     ahrs = new AHRS(SerialPort.Port.kMXP);
 
 
-    // Define the ports the 'LEFT' Motor Controllers are Connected to the RoboRIO
-    // (CAN or PWM) If CAN additional steps are required to set address port on
-    // Motor Controller
+
 
 
 
@@ -81,15 +102,7 @@ public class Constants {
 
   
 
-  directionalMotor = new WPI_VictorSPX(10);
-  s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-
-  armMotor = new WPI_VictorSPX(5);
-
-//Motor Controller Parameters
-  armMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-  armMotor.setNeutralMode(NeutralMode.Brake);
-  directionalMotor.setNeutralMode(NeutralMode.Brake);
+  id_directionalMotor = 10;
 
 //Define Options for Differential Drive
   driveTrainDifferentialDrive.setSafetyEnabled(false);

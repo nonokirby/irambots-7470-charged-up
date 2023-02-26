@@ -28,13 +28,12 @@ import frc.robot.subsystems.*;
    public final static Joystick m_arcade = new Joystick(0);
    
    /*m_driver Buttons Controller */
-   private final JoystickButton clawRelease = new JoystickButton(m_driver,6);
-   //private final JoystickButton grabUp = new JoystickButton(m_driver, 2);
-   private final JoystickButton clawGrabSquare = new JoystickButton(m_driver, 5);
+   private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,6);
+   private final JoystickButton clawReleaseCone = new JoystickButton(m_arcade, 5);
+   private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 4);
+   private final JoystickButton clawReleaseSquare = new JoystickButton(m_arcade, 3);
    private final JoystickButton mw_armIn = new JoystickButton(m_driver,11);
    private final JoystickButton shifter = new JoystickButton(m_driver, 12);
-   /*m_arcade Buttons Controller */
-   //private final JoystickButton grabUp = new JoystickButton(m_arcade, 6);
 
 
    public RobotContainer() {
@@ -47,7 +46,8 @@ gearShift.setDefaultCommand(new shifter());
 
 private void configureButtonBindings() {
 /* Driver 1 Buttons */
-  clawRelease.whileTrue(new clawReleaseSquare(grabber));
+  clawReleaseCone.whileTrue(new clawReleaseSquare(grabber));
+  clawReleaseSquare.whileTrue(new clawReleaseSquare(grabber));
   mw_armIn.whileTrue(new frc.robot.commands.arm.mw_armIn());
   /* Driver 2 Buttons */
   clawGrabSquare.whileTrue(new clawGrabSquare(grabber));
