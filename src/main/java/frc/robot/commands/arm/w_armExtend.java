@@ -6,13 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.arm;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class w_armExtend extends CommandBase {
 
- public w_armExtend() { 
-   addRequirements(RobotContainer.arm);
+  public w_armExtend() { 
+    addRequirements(RobotContainer.arm);
   }
 
   @Override

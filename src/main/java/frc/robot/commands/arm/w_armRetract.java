@@ -11,24 +11,24 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class w_armRetract extends CommandBase {
-    //@SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
-    public w_armRetract() {
-        addRequirements(RobotContainer.arm);
-    }
+  public w_armRetract() {
+    addRequirements(RobotContainer.arm);
+  }
 
-    @Override
-    public void execute (){
-        RobotContainer.arm.armWinch(1);
-    }
-    @Override
-      public boolean isFinished() {
-        return false;
-    }
+  @Override
+  public void execute (){
+    RobotContainer.arm.armWinch(1);
+  }
+  
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 
-    @Override
-    public void end(boolean interrupted) {
-        RobotContainer.arm.armWinch(0);
-    }
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.arm.armWinch(0);
+  }
 
 }

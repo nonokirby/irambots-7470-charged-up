@@ -24,7 +24,7 @@ import frc.robot.subsystems.*;
     private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
     private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
     private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
-    private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12)
+    private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12);
 
 
   public RobotContainer() {
@@ -38,6 +38,7 @@ private void configureButtonBindings() {
   clawGrabSquare.onFalse(new clawReleaseSquare(grabber));
   clawGrabCone.onTrue(new clawGrabCone(grabber));
   mw_armIn.whileTrue(new mw_armIn());
+  mw_armOut.whileTrue(new mw_armOut());
   
   }
 }

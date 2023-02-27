@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.arm;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -19,6 +20,7 @@ public class mw_armOut extends CommandBase {
     public void execute() {
         RobotContainer.arm.mw_armWinch(-1);
     }
+
     @Override
     public boolean isFinished() {
         return false;
