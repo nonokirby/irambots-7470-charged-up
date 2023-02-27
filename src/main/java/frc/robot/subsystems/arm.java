@@ -15,7 +15,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class arm extends SubsystemBase {
     
-
     private final TalonSRX armMotorTalonSRX = new TalonSRX(Constants.id_armMotor);
     private final TalonSRX directionalMotorTalonSRX = new TalonSRX(Constants.id_directionalMotor);
 
@@ -48,6 +47,7 @@ public class arm extends SubsystemBase {
     }
     
     // -29398.000000
+    // 55296
     public void p_armLength(double length){
       armMotorTalonSRX.set(ControlMode.Position, length);
     }

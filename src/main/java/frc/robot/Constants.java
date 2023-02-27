@@ -32,6 +32,16 @@ public class Constants {
   public static int id_sGrabSolenoidR;
   public static int id_lGrabSolenoidF;
   public static int id_lGrabSolenoidR;
+  
+  public static int pos_high_armLength;
+  public static int pos_mid_armLength;
+  public static int pos_low_armLength;
+  public static int pos_stow_armLength;
+
+  public static int pos_high_armAngle;
+  public static int pos_mid_armAngle;
+  public static int pos_low_armAngle;
+  public static int pos_stow_armAngle;
 
   public static void init() {
     //define device Id
@@ -47,8 +57,17 @@ public class Constants {
     id_sGrabSolenoidR     = 7;
     id_lGrabSolenoidF     = 0;
     id_lGrabSolenoidR     = 1;
-
     ahrs = new AHRS(SerialPort.Port.kMXP);
+    
+    //1024 per full revolution
+    pos_high_armLength = 0;
+    pos_mid_armLength = 0;
+    pos_low_armLength = 0;
+    pos_stow_armLength = 0;
+    pos_high_armAngle = 0;
+    pos_mid_armAngle = 0;
+    pos_low_armAngle = 0;
+    pos_stow_armAngle = 0;
 
   }
 }
