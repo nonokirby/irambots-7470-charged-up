@@ -27,6 +27,7 @@ import frc.robot.subsystems.*;
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
+    System.out.print("robotContainer");
  }
 
 private void configureButtonBindings() {

@@ -7,7 +7,7 @@
 
 package frc.robot;
 import com.kauailabs.navx.frc.*;
-import edu.wpi.first.wpilibj.SerialPort;
+
 
 /**
  * The Constants is a mapping from the ports sensors and actuators are wired into
@@ -15,59 +15,32 @@ import edu.wpi.first.wpilibj.SerialPort;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class Constants {
+public final class Constants {
  
   public static AHRS ahrs;
 
-  // Define device Id variables
-  public static int id_leftMotor_A;
-  public static int id_leftMotor_B;
-  public static int id_rightMotor_A;
-  public static int id_rightMotor_B;
-  public static int id_sideMotor;
-  public static int id_directionalMotor;
-  public static int id_armMotor;
-  public static int id_shiftSolenoid;
-  public static int id_sGrabSolenoidF;
-  public static int id_sGrabSolenoidR;
-  public static int id_lGrabSolenoidF;
-  public static int id_lGrabSolenoidR;
-  
-  public static int pos_high_armLength;
-  public static int pos_mid_armLength;
-  public static int pos_low_armLength;
-  public static int pos_stow_armLength;
+  //define device Id
+  public static int id_leftMotor_A        = 0;
+  public static int id_leftMotor_B        = 1;
+  public static int id_rightMotor_A       = 2;
+  public static int id_rightMotor_B       = 3;
+  public static int id_sideMotor          = 4; 
+  public static int id_directionalMotor   = 13;
+  public static int id_armMotor           = 14;
+  public static int id_shiftSolenoid      = 4;
+  public static int id_sGrabSolenoidF     = 6;
+  public static int id_sGrabSolenoidR     = 7;
+  public static int id_lGrabSolenoidF     = 0;
+  public static int id_lGrabSolenoidR     = 1;
 
-  public static int pos_high_armAngle;
-  public static int pos_mid_armAngle;
-  public static int pos_low_armAngle;
-  public static int pos_stow_armAngle;
+  //1024 per full revolution
+  public static int pos_high_armLength = 0;
+  public static int pos_mid_armLength = 0;
+  public static int pos_low_armLength = 0;
+  public static int pos_stow_armLength = 0;
+  public static int pos_high_armAngle = 0;
+  public static int pos_mid_armAngle = 0;
+  public static int pos_low_armAngle = 0;
+  public static int pos_stow_armAngle = 0;
 
-  public static void init() {
-    //define device Id
-    id_leftMotor_A        = 0;
-    id_leftMotor_B        = 1;
-    id_rightMotor_A       = 2;
-    id_rightMotor_B       = 3;
-    id_sideMotor          = 4; 
-    id_directionalMotor   = 13;
-    id_armMotor           = 14;
-    id_shiftSolenoid      = 4;
-    id_sGrabSolenoidF     = 6;
-    id_sGrabSolenoidR     = 7;
-    id_lGrabSolenoidF     = 0;
-    id_lGrabSolenoidR     = 1;
-    ahrs = new AHRS(SerialPort.Port.kMXP);
-    
-    //1024 per full revolution
-    pos_high_armLength = 0;
-    pos_mid_armLength = 0;
-    pos_low_armLength = 0;
-    pos_stow_armLength = 0;
-    pos_high_armAngle = 0;
-    pos_mid_armAngle = 0;
-    pos_low_armAngle = 0;
-    pos_stow_armAngle = 0;
-
-  }
 }

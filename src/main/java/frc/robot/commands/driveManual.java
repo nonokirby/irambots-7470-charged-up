@@ -16,6 +16,8 @@ public class driveManual extends CommandBase {
     public void execute() {
     double speed = -RobotContainer.m_driver.getRawAxis(2);
     double rotation = -RobotContainer.m_driver.getRawAxis(1);
+    boolean quickturn = true;
+    System.out.print("driveManual");
 
     if(speed > -0.1 && speed < 0.1){
       speed = 0;
@@ -27,7 +29,7 @@ public class driveManual extends CommandBase {
     if((speed < -0.1 || speed > 0.1) && (rotation < 0.3 && rotation > -0.3)){
         rotation = 0;
       }
-    RobotContainer.driveTrain.driveArcade(-speed, rotation);
+    RobotContainer.driveTrain.driveCurvature(-speed, rotation, quickturn);
 
     double swipeSpeed = RobotContainer.m_driver.getRawAxis(0);
     if (swipeSpeed >= 0.1 || swipeSpeed <= -0.1){
