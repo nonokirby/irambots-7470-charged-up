@@ -12,7 +12,6 @@ public class gearShift extends SubsystemBase {
   Solenoid  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.id_shiftSolenoid);
   
 
-//True is high false is low
 public void shift(boolean pos) {
  shiftSolenoid.set(pos);
 }

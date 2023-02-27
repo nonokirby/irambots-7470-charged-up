@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class shifter extends CommandBase {
   
+  boolean high = true;
+  boolean low = false;
+  
   public shifter() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.gearShift);
@@ -23,11 +26,11 @@ public class shifter extends CommandBase {
   //High
   System.out.print("shifter");
   if (lever >= 0.5){
-    RobotContainer.gearShift.shift(false);
+    RobotContainer.gearShift.shift(low);
   }
   //Low
   else if (lever <= -0.5){
-    RobotContainer.gearShift.shift(true);
+    RobotContainer.gearShift.shift(high);
   }
  }
 
