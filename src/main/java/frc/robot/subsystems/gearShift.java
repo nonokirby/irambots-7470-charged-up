@@ -4,11 +4,12 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class gearShift extends SubsystemBase {
-  Solenoid  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
+  Solenoid  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.id_shiftSolenoid);
   
 
 //True is high false is low

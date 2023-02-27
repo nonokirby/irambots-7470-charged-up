@@ -12,6 +12,8 @@ import frc.robot.subsystems.grabber;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class clawGrabCone extends InstantCommand {
+
+
   
   public clawGrabCone(grabber subsystem) {
     addRequirements(RobotContainer.grabber);
@@ -20,8 +22,8 @@ public class clawGrabCone extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.grabber.grabberToggle(l_grabSolenoid,Value.kForward);
-    RobotContainer.grabber.grabberToggle(s_grabSolenoid,value.kForward);
+    RobotContainer.grabber.grabberToggle("l_grabSolenoid",Value.kForward);
+    RobotContainer.grabber.grabberToggle("s_grabSolenoid",Value.kForward);
   }
 }
 

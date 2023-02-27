@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class arm extends SubsystemBase {
@@ -50,9 +49,9 @@ public class arm extends SubsystemBase {
     // -29398.000000
     //positional points
     public void p_armLength(double length){
-      armMotorTalonSRX.set(ControlMode.PercentOutput, 1)
+      armMotorTalonSRX.set(ControlMode.PercentOutput, length);
     }
     public void p_armAngle(double angle){
-      directionalMotorTalonSRX.set(ControlMode.PercentOutput, 1)
+      directionalMotorTalonSRX.set(ControlMode.Position, angle);
     }
 }

@@ -1,15 +1,11 @@
  
 package frc.robot;
 
-//import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-
-//import edu.wpi.first.wpilibj.buttons.Button;
-//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.commands.claw.clawGrabSquare;
-import frc.robot.commands.claw.clawReleaseSquare;
+import frc.robot.commands.claw.*;
+import frc.robot.commands.arm.*;
 import frc.robot.subsystems.*;
 /*
  * This class is the glue that binds the controls on the physical operator
@@ -28,10 +24,8 @@ import frc.robot.subsystems.*;
    public final static Joystick m_arcade = new Joystick(0);
    
    /*m_driver Buttons Controller */
-   private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,6);
-   private final JoystickButton clawReleaseCone = new JoystickButton(m_arcade, 5);
-   private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 4);
-   private final JoystickButton clawReleaseSquare = new JoystickButton(m_arcade, 3);
+   private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
+   private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
    private final JoystickButton mw_armIn = new JoystickButton(m_driver,11);
    private final JoystickButton shifter = new JoystickButton(m_driver, 12);
 
@@ -45,12 +39,14 @@ gearShift.setDefaultCommand(new shifter());
  }
 
 private void configureButtonBindings() {
-/* Driver 1 Buttons */
-  clawReleaseCone.whileTrue(new clawReleaseSquare(grabber));
-  clawReleaseSquare.whileTrue(new clawReleaseSquare(grabber));
-  mw_armIn.whileTrue(new frc.robot.commands.arm.mw_armIn());
-  /* Driver 2 Buttons */
-  clawGrabSquare.whileTrue(new clawGrabSquare(grabber));
+  /* Driver Buttons */
+
+  /* Operator Buttons */
+  clawGrabSquare.onTrue(new clawGrabSquare(grabber));
+  clawGrabSquare.onFalse(new clawReleaseSquare(grabber));
+  clawGrabCone.onTrue(new clawGrabCone(grabber));
+  mw_armIn.whileTrue(new mw_armIn());
+
   shifter.whileFalse(new shifter());
   System.out.print("configureButtonBindings");
 //driver controller

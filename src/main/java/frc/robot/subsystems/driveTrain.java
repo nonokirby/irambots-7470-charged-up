@@ -7,44 +7,26 @@
 
 package frc.robot.subsystems;
 
-//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-//import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Constants;
 import frc.robot.commands.driveManual;
 
-//@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
 public class driveTrain extends SubsystemBase {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
-  
-  //private final WPI_VictorSPX leftMotorA = Constants.driveTrainLeftMotorA;
-  //private final WPI_VictorSPX leftMotorB = Constants.driveTrainLeftMotorB;
+  WPI_VictorSPX driveTrainLeftMotorA = new WPI_VictorSPX(Constants.id_leftMotor_A);
+  WPI_VictorSPX driveTrainLeftMotorB = new WPI_VictorSPX(Constants.id_leftMotor_B);
 
+  MotorControllerGroup driveTrainLeftMotors = new MotorControllerGroup(driveTrainLeftMotorA, driveTrainLeftMotorB);
 
-  // For Victor SPX
-  WPI_VictorSPX driveTrainLeftMotorA = new WPI_VictorSPX(2);
-  WPI_VictorSPX driveTrainLeftMotorB = new WPI_VictorSPX(3);
+  WPI_VictorSPX driveTrainRightMotorA = new WPI_VictorSPX(Constants.id_rightMotor_A);
+  WPI_VictorSPX driveTrainRightMotorB = new WPI_VictorSPX(Constants.id_rightMotor_B);
 
-
-//Define what motors are part of the 'LEFT' Speed Controller Group  
-MotorControllerGroup driveTrainLeftMotors = new MotorControllerGroup(driveTrainLeftMotorA, driveTrainLeftMotorB/*, driveTrainLeftMotorC*/);
-
-
-//For Victor SPX
-WPI_VictorSPX driveTrainRightMotorA = new WPI_VictorSPX(0);
-WPI_VictorSPX driveTrainRightMotorB = new WPI_VictorSPX(1);
-
-// Define the ports the 'RIGHT' Motor Controllers are Connected to the RoboRIO (CAN or PWM)  If CAN additional steps are required to set address port on Motor Controller
-
-//Define what motors are part of the 'RIGHT' Speed Controller Group  
-MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB/*, driveTrainRightMotorC*/);
+MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
 
 //Define what Speed Controller Groups are part of the Differential Drive
 DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
@@ -60,16 +42,6 @@ public Object driveArcade;
   public MotorControllerGroup getRightMotors(){
     return driveTrainRightMotors;
   }
-  /*public void driveTank(final double left, final double right) {
-    differentialDrive.tankDrive(left, right);
-  }*/
-  
-  /*public void driveArcade(final double speed, final double rotation) {
-    differentialDrive.arcadeDrive(speed, rotation);
-  }*/
-
-   
- 
 
   public void stop() {
     DifferentialDrive.stopMotor();
@@ -77,15 +49,13 @@ public Object driveArcade;
   }
 
 public static Object getInstance() {
-
-  
 	return null;
 }
 
-
-
- public void driveArcade(double speed, double rotation) {
+public void driveArcade(double speed, double rotation) {
+  DifferentialDrive.arcadeDrive(speed, rotation);
 }
+
 public void driveCurvature(double speed, double rotation, boolean quickTurn) {
   DifferentialDrive.curvatureDrive(speed, rotation, quickTurn);
 }
