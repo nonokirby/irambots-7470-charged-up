@@ -26,44 +26,27 @@ public class driveTrain extends SubsystemBase {
   WPI_VictorSPX driveTrainRightMotorA = new WPI_VictorSPX(Constants.id_rightMotor_A);
   WPI_VictorSPX driveTrainRightMotorB = new WPI_VictorSPX(Constants.id_rightMotor_B);
 
-MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
+  MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
 
-//Define what Speed Controller Groups are part of the Differential Drive
-DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
-public Object driveArcade;
+  DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
+  private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
+
+  public void initDefaultCommand(){
     setDefaultCommand(new driveManual());
   }
-  public MotorControllerGroup getLeftMotors() {
-    return driveTrainLeftMotors;
-  }
-  public MotorControllerGroup getRightMotors(){
-    return driveTrainRightMotors;
-  }
 
-  public void stop() {
+  public void stop(){
     DifferentialDrive.stopMotor();
-    
   }
 
-public static Object getInstance() {
-	return null;
-}
+  public void driveArcade(double speed, double rotation){
+    DifferentialDrive.arcadeDrive(speed, rotation);
+  }
 
-public void driveArcade(double speed, double rotation) {
-  DifferentialDrive.arcadeDrive(speed, rotation);
-}
-
-public void driveCurvature(double speed, double rotation, boolean quickTurn) {
-  DifferentialDrive.curvatureDrive(speed, rotation, quickTurn);
-}
-
-public void tankDrive(double left, double right) {
-  DifferentialDrive.tankDrive(left, right);
-}
-
+  public void sideSwipe(double speed){
+    sideMotorVictorSPX.set(speed);
+  }
 }
 
 
