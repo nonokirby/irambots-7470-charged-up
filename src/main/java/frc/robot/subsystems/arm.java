@@ -36,18 +36,18 @@ public class arm extends SubsystemBase {
         }
           else {
               armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
-          }
+        }
     }
     
-        public void resetEncoder() {
+    public void resetEncoder() {
         armMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
     public double getArmEncoder() {
         return armMotorTalonSRX.getSelectedSensorPosition();
     }
+    
     // -29398.000000
-    //positional points
     public void p_armLength(double length){
       armMotorTalonSRX.set(ControlMode.Position, length);
     }
