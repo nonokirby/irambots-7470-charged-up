@@ -43,4 +43,11 @@ public final class Constants {
   public static int pos_low_armAngle      = 0;
   public static int pos_stow_armAngle     = 0;
 
+  public static double lm_driveTrainSpeed       = 1;
+  public static double lm_driveTrainRotation    = 0.5;
+  public static double lm_driveTrainSide        = 1;
+  public static double lm_directionalMotorSpeed = 0.4;
+  public static double lm_armMotorSpeed         = 1;
+
+
 }

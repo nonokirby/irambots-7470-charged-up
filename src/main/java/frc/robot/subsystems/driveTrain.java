@@ -34,8 +34,10 @@ public class driveTrain extends SubsystemBase {
 
   DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
 
-  Encoder r_driveEncoder = new Encoder(0, 1);
-  Encoder l_driveEncoder = new Encoder(2, 3);
+  public static Encoder r_driveEncoder = new Encoder(0, 1);
+  public static Encoder l_driveEncoder = new Encoder(2, 3);
+
+  
 
   private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
   AHRS gyro = new AHRS(SerialPort.Port.kMXP);
@@ -56,9 +58,6 @@ public class driveTrain extends SubsystemBase {
     sideMotorVictorSPX.set(speed);
   }
 
-  public void getEncoder(){
-    
-  }
 }
 
 

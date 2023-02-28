@@ -34,19 +34,19 @@ public class arm extends SubsystemBase {
     }
 
     public void mw_armWinch(double speed) {
-        armMotorTalonSRX.set(ControlMode.PercentOutput,speed);
+        armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
     }
 
     public void armMove(double speed) {
-        directionalMotorTalonSRX.set(ControlMode.PercentOutput,speed);
+        directionalMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_directionalMotorSpeed);
     }
 
     public void armWinch(double speed) {
 
         if(speed < 0 && getArmEncoder() <= 2500){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed);
+          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
         } else if(speed > 0 && getArmEncoder() >= -28512){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed);
+          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
         }
           else {
               armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
@@ -73,4 +73,4 @@ public class arm extends SubsystemBase {
     public void p_armAngle(double angle){
       directionalMotorTalonSRX.set(ControlMode.Position, angle);
     }
-}
+}   

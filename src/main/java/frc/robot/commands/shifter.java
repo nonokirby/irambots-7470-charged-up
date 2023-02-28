@@ -24,7 +24,6 @@ public class shifter extends CommandBase {
   public void execute() {
   double lever = RobotContainer.m_driver.getRawAxis(3);
   //High
-  System.out.print("shifter");
   if (lever >= 0.5){
     RobotContainer.gearShift.shift(low);
   }
