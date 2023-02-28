@@ -34,13 +34,13 @@ public final class Constants {
   public static int id_lGrabSolenoidR     = 0;
 
   //1024 per full revolution
-  public static int pos_high_armLength = 0;
-  public static int pos_mid_armLength = 0;
-  public static int pos_low_armLength = 0;
-  public static int pos_stow_armLength = 0;
-  public static int pos_high_armAngle = 0;
-  public static int pos_mid_armAngle = 0;
-  public static int pos_low_armAngle = 0;
-  public static int pos_stow_armAngle = 0;
+  public static int pos_high_armLength    = 0;
+  public static int pos_mid_armLength     = 0;
+  public static int pos_low_armLength     = 0;
+  public static int pos_stow_armLength    = 0;
+  public static int pos_high_armAngle     = 0;
+  public static int pos_mid_armAngle      = 0;
+  public static int pos_low_armAngle      = 0;
+  public static int pos_stow_armAngle     = 0;
 
 }

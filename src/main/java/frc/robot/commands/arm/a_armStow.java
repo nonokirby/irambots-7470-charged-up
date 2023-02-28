@@ -29,7 +29,6 @@ public class a_armStow extends InstantCommand{
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.arm.armWinch(0);
   }
 
 }

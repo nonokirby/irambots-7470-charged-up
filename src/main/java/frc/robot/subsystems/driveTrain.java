@@ -16,6 +16,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.commands.driveManual;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 
 
@@ -32,6 +33,9 @@ public class driveTrain extends SubsystemBase {
   MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
 
   DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
+
+  Encoder r_driveEncoder = new Encoder(0, 1);
+  Encoder l_driveEncoder = new Encoder(2, 3);
 
   private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
   AHRS gyro = new AHRS(SerialPort.Port.kMXP);
@@ -50,6 +54,10 @@ public class driveTrain extends SubsystemBase {
 
   public void sideSwipe(double speed){
     sideMotorVictorSPX.set(speed);
+  }
+
+  public void getEncoder(){
+    
   }
 }
 
