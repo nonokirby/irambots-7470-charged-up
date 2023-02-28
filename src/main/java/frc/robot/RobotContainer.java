@@ -49,5 +49,9 @@ private void configureButtonBindings() {
   r_armFoward.whileTrue(new r_armFoward());
   mw_armIn.whileTrue(new mw_armIn());
   mw_armOut.whileTrue(new mw_armOut());
+  a_armHigh.onTrue(new a_armHigh());
+  a_armMid.onTrue(new a_armLow());
+  a_armLow.onTrue(new a_armLow());
+  a_armStow.onTrue(new frc.robot.commands.arm.a_armStow());
   }
 }
