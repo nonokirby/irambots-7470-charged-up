@@ -6,6 +6,7 @@ package frc.robot.commands.claw;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.grabber;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -13,13 +14,13 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class clawReleaseSquare extends InstantCommand {
 
-  public clawReleaseSquare(grabber subsystem) {
+  public clawReleaseSquare() {
     addRequirements(RobotContainer.grabber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.grabber.grabberToggle("s_grabSolenoid",Value.kReverse);
+    RobotContainer.grabber.s_grabberToggle(Value.kReverse);
   }
 }

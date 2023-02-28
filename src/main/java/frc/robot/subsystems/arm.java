@@ -9,14 +9,30 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
+
 
 public class arm extends SubsystemBase {
+
+    private final TalonSRX directionalMotorTalonSRX;
+    private final TalonSRX armMotorTalonSRX;
     
-    private final TalonSRX armMotorTalonSRX = new TalonSRX(Constants.id_armMotor);
-    private final TalonSRX directionalMotorTalonSRX = new TalonSRX(Constants.id_directionalMotor);
+    public arm(){
+
+      armMotorTalonSRX = new TalonSRX(Constants.id_armMotor);
+      armMotorTalonSRX.configFactoryDefault();
+      armMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
+      armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
+      
+      directionalMotorTalonSRX = new TalonSRX(Constants.id_directionalMotor);
+      directionalMotorTalonSRX.configFactoryDefault();
+      directionalMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
+      directionalMotorTalonSRX.set(ControlMode.PercentOutput, 0);
+    }
 
     public void mw_armWinch(double speed) {
         armMotorTalonSRX.set(ControlMode.PercentOutput,speed);
@@ -44,6 +60,10 @@ public class arm extends SubsystemBase {
 
     public double getArmEncoder() {
         return armMotorTalonSRX.getSelectedSensorPosition();
+    }
+
+    public double getDirEncoder() {
+        return directionalMotorTalonSRX.getSelectedSensorPosition();
     }
     
     // -29398.000000

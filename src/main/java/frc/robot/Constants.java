@@ -30,8 +30,8 @@ public final class Constants {
   public static int id_shiftSolenoid      = 4;
   public static int id_sGrabSolenoidF     = 6;
   public static int id_sGrabSolenoidR     = 7;
-  public static int id_lGrabSolenoidF     = 0;
-  public static int id_lGrabSolenoidR     = 1;
+  public static int id_lGrabSolenoidF     = 1;
+  public static int id_lGrabSolenoidR     = 0;
 
   //1024 per full revolution
   public static int pos_high_armLength = 0;

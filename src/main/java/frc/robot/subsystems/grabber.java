@@ -14,9 +14,11 @@ public class grabber extends SubsystemBase {
   DoubleSolenoid l_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_lGrabSolenoidF, Constants.id_lGrabSolenoidR);
 
 
-public void grabberToggle(String Solenoid, Value Value) {
-  
-  
+public void s_grabberToggle(Value Value) {
+  s_grabSolenoid.set(Value);
+}
+public void l_grabberToggle(Value Value) {
+  l_grabSolenoid.set(Value);
 }
 }
 

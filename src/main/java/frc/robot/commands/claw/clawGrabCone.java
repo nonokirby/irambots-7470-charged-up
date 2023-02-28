@@ -5,6 +5,7 @@
 package frc.robot.commands.claw;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.grabber;
 
@@ -15,15 +16,15 @@ public class clawGrabCone extends InstantCommand {
 
 
   
-  public clawGrabCone(grabber subsystem) {
+  public clawGrabCone() {
     addRequirements(RobotContainer.grabber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.grabber.grabberToggle("l_grabSolenoid",Value.kForward);
-    RobotContainer.grabber.grabberToggle("s_grabSolenoid",Value.kForward);
+    RobotContainer.grabber.s_grabberToggle(Value.kForward);
+    RobotContainer.grabber.l_grabberToggle(Value.kReverse);
   }
 }
 

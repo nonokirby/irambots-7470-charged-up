@@ -18,7 +18,7 @@ public class r_armFoward extends CommandBase {
 
   @Override
   public void execute() {
-    RobotContainer.arm.armMove(1);
+    RobotContainer.arm.armMove(-0.3);
   }
 
   @Override
