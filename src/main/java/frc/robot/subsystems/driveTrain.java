@@ -63,7 +63,7 @@ public class driveTrain extends SubsystemBase {
     return l_driveEncoder.getRaw();
   }
   
-  public double r_getEncoder(){
+  public static double r_getEncoder(){
     return r_driveEncoder.getRaw();
   }
 
