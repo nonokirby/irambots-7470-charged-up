@@ -2,10 +2,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.arm.*;
+import frc.robot.commands.encoders.*;
 import frc.robot.subsystems.*;
 
  public class RobotContainer {
@@ -26,6 +30,7 @@ import frc.robot.subsystems.*;
 
 
   public RobotContainer() {
+    SmartDashboard.putData("reset encoders", new resetEncoders());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
