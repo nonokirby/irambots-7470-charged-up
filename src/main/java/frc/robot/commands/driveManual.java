@@ -15,9 +15,9 @@ public class driveManual extends CommandBase {
 
     @Override
     public void execute() {
-    double speed = RobotContainer.m_driver.getRawAxis(2);
-    double rotation = RobotContainer.m_driver.getRawAxis(1);
-    boolean quickturn = true;
+    double speed = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainSpeed);
+    double rotation = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainRotation);
+    double swipeSpeed = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainSwipe);
 
     if(speed > -0.1 && speed < 0.1){
       speed = 0;
@@ -29,9 +29,8 @@ public class driveManual extends CommandBase {
     if((speed < -0.1 || speed > 0.1) && (rotation < 0.2 && rotation > -0.2)){
       rotation = 0;
     }
-    RobotContainer.driveTrain.driveCurvature(-speed * Constants.lm_driveTrainSpeed, rotation * Constants.lm_driveTrainRotation, quickturn);
+    RobotContainer.driveTrain.driveArcade(-speed * Constants.lm_driveTrainSpeed, rotation * Constants.lm_driveTrainRotation);
 
-    double swipeSpeed = RobotContainer.m_driver.getRawAxis(0);
      if (swipeSpeed <= 0.1 || swipeSpeed >= -0.1){
        RobotContainer.driveTrain.sideSwipe(swipeSpeed * Constants.lm_driveTrainSide);
      }

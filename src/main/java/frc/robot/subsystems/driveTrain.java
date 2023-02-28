@@ -37,7 +37,8 @@ public class driveTrain extends SubsystemBase {
   public static Encoder r_driveEncoder = new Encoder(0, 1);
   public static Encoder l_driveEncoder = new Encoder(2, 3);
 
-  
+
+
 
   private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
   AHRS gyro = new AHRS(SerialPort.Port.kMXP);
@@ -50,14 +51,26 @@ public class driveTrain extends SubsystemBase {
     DifferentialDrive.stopMotor();
   }
 
-  public void driveCurvature(double speed, double rotation, boolean quickturn){
-    DifferentialDrive.curvatureDrive(speed, rotation, quickturn);
+  public void driveArcade(double speed, double rotation){
+    DifferentialDrive.arcadeDrive(speed, rotation);
   }
 
   public void sideSwipe(double speed){
     sideMotorVictorSPX.set(speed);
   }
 
+  public double l_getEncoder(){
+    return l_driveEncoder.getRaw();
+  }
+  
+  public double r_getEncoder(){
+    return r_driveEncoder.getRaw();
+  }
+
+  public static void resetEncoders(){
+    r_driveEncoder.reset();
+    l_driveEncoder.reset();
+  }
 }
 
 

@@ -17,8 +17,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class arm extends SubsystemBase {
 
-    private final TalonSRX directionalMotorTalonSRX;
-    private final TalonSRX armMotorTalonSRX;
+    private static TalonSRX directionalMotorTalonSRX;
+    private static TalonSRX armMotorTalonSRX;
     
     public arm(){
 
@@ -53,8 +53,9 @@ public class arm extends SubsystemBase {
         }
     }
     
-    public void resetEncoder() {
+    public static void resetEncoders() {
         armMotorTalonSRX.setSelectedSensorPosition(0);
+        directionalMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
     public double getArmEncoder() {

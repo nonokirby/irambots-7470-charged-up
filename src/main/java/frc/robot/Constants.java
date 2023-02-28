@@ -50,4 +50,8 @@ public final class Constants {
   public static double lm_armMotorSpeed         = 1;
 
 
+  public static int ax_driveTrainSpeed    = 2;
+  public static int ax_driveTrainRotation = 1;
+  public static int ax_driveTrainSwipe    = 0;
+  public static int ax_gearShift          = 3;
 }
