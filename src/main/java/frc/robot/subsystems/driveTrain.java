@@ -48,8 +48,8 @@ public class driveTrain extends SubsystemBase {
     DifferentialDrive.stopMotor();
   }
 
-  public void driveCurvature(double speed, double rotation, boolean quickturn){
-    DifferentialDrive.curvatureDrive(speed, rotation, quickturn);
+  public void driveArcade(double speed, double rotation){
+    DifferentialDrive.arcadeDrive(speed, rotation);
   }
 
   public void sideSwipe(double speed){

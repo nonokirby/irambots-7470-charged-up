@@ -41,6 +41,5 @@ private void configureButtonBindings() {
   r_armFoward.whileTrue(new r_armFoward());
   mw_armIn.whileTrue(new mw_armIn());
   mw_armOut.whileTrue(new mw_armOut());
-  
   }
 }
