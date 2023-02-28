@@ -8,6 +8,7 @@
 package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class a_armHigh extends InstantCommand{
@@ -18,7 +19,7 @@ public class a_armHigh extends InstantCommand{
 
   @Override
   public void initialize(){
-    RobotContainer.arm.p_armLength(0);
-    RobotContainer.arm.p_armAngle(0);
+    RobotContainer.arm.p_armLength(Constants.pos_high_armLength);
+    RobotContainer.arm.p_armAngle(Constants.pos_high_armAngle);
   }
 }
