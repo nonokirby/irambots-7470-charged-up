@@ -62,7 +62,7 @@ public class arm extends SubsystemBase {
         return armMotorTalonSRX.getSelectedSensorPosition();
     }
 
-    public static double getDirEncoder() {
+    public double getDirEncoder() {
         return directionalMotorTalonSRX.getSelectedSensorPosition();
     }
     

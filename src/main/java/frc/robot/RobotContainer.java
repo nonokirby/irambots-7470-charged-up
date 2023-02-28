@@ -5,6 +5,9 @@ import javax.xml.crypto.dsig.spec.HMACParameterSpec;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.claw.*;
@@ -35,6 +38,9 @@ import frc.robot.subsystems.*;
 
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
+    SmartDashboard.putNumber("linear encoder", arm.getArmEncoder());
+    SmartDashboard.putNumber("directional encoder", arm.getDirEncoder());
+    SmartDashboard.putString("gearshift", gearShift.position());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
@@ -52,6 +58,6 @@ private void configureButtonBindings() {
   a_armHigh.onTrue(new a_armHigh());
   a_armMid.onTrue(new a_armLow());
   a_armLow.onTrue(new a_armLow());
-  a_armStow.onTrue(new frc.robot.commands.arm.a_armStow());
+  a_armStow.onTrue(new a_armStow());
   }
 }

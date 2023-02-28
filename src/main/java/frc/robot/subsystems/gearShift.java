@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -10,10 +11,20 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class gearShift extends SubsystemBase {
   Solenoid  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.id_shiftSolenoid);
+  String position = "low";
   
 
 public void shift(boolean pos) {
  shiftSolenoid.set(pos);
+ if (pos = true){
+  position = "high";
+ }
+ else {
+  position = "low";
+ }
+}
+public String position(){
+  return position;
 }
 }
 
