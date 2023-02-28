@@ -10,14 +10,14 @@ package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 
-public class a_armStow extends InstantCommand{
+public class a_armMid extends InstantCommand{
 
-  public a_armStow() {
+  public a_armMid() {
     addRequirements(RobotContainer.arm);
   }
 
   @Override
-  public void initialize (){
+  public void initialize(){
     RobotContainer.arm.p_armLength(0);
     RobotContainer.arm.p_armAngle(0);
   }
