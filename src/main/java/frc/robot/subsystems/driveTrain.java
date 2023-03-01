@@ -74,6 +74,8 @@ public class driveTrain extends SubsystemBase {
   }
   @Override
   public void periodic(){
+    SmartDashboard.putNumber("left encoder", l_getEncoder());
+    SmartDashboard.putNumber("right encoder", r_getEncoder());
   }
 }
 
