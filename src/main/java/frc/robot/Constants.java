@@ -8,8 +8,6 @@
 package frc.robot;
 import com.kauailabs.navx.frc.*;
 
-import frc.robot.subsystems.driveTrain;
-
 
 /**
  * The Constants is a mapping from the ports sensors and actuators are wired into
@@ -56,26 +54,4 @@ public final class Constants {
   public static int ax_driveTrainRotation = 1;
   public static int ax_driveTrainSwipe    = 0;
   public static int ax_gearShift          = 3;
-
-
-
-  
-	/**
-	 * Which PID slot to pull gains from. Starting 2018, you can choose from
-	 * 0,1,2 or 3. Only the first two (0,1) are visible in web-based
-	 * configuration.
-	 */
-  public static final class leftMotorConfig{
-    public static final int kSlotIdx = 0;
-    public static final int kPIDLoopIdx = 0;
-    public static final int kTimeoutMs = 30;
-    static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
-  }
-  public static final class rightMotorConfig{
-    public static final int kSlotIdx = 0;
-    public static final int kPIDLoopIdx = 0;
-    public static final int kTimeoutMs = 30;
-    
-    static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
-  }
 }
