@@ -1,11 +1,6 @@
 {
   "HALProvider": {
     "Encoders": {
-      "0": {
-        "header": {
-          "open": true
-        }
-      },
       "1": {
         "header": {
           "open": true
@@ -16,7 +11,27 @@
       }
     },
     "Other Devices": {
-      "Compressor[0]": {
+      "Talon SRX[13]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[13]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[14]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[14]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[2]": {
         "header": {
           "open": true
         }
@@ -62,6 +77,13 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/SmartDashboard/reset encoders": "Command"
+    },
+    "windows": {
+      "/SmartDashboard/reset encoders": {
+        "window": {
+          "visible": true
+        }
+      }
     }
   },
   "NetworkTables": {
@@ -70,6 +92,11 @@
     },
     "Retained Values": {
       "open": false
+    },
+    "transitory": {
+      "SmartDashboard": {
+        "open": true
+      }
     }
   }
 }
