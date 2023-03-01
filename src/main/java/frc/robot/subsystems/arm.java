@@ -14,13 +14,15 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
+import edu.wpi.first.math.controller.PIDController;
 
 
 public class arm extends SubsystemBase {
 
     private static TalonSRX directionalMotorTalonSRX;
     private static TalonSRX armMotorTalonSRX;
+    private PIDController linearPIDController;
+
     
     public arm(){
 
@@ -28,6 +30,7 @@ public class arm extends SubsystemBase {
       armMotorTalonSRX.configFactoryDefault();
       armMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
       armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
+     
       
       directionalMotorTalonSRX = new WPI_TalonSRX(Constants.id_directionalMotor);
       directionalMotorTalonSRX.configFactoryDefault();
@@ -71,20 +74,14 @@ public class arm extends SubsystemBase {
     // -29398.000000
     // 55296
     public void p_armLength(double length){
-      double error = -5000;
-      while (error > 5 || error < -5){
+
   
-      if (error < 0){
-        armMotorTalonSRX.set(ControlMode.PercentOutput, 0.5);
-        armMotorTalonSRX.setSelectedSensorPosition(getArmEncoder()+0.5);
-      }
-      if (error > 0){
-        armMotorTalonSRX.set(ControlMode.PercentOutput, -0.5);
-        armMotorTalonSRX.setSelectedSensorPosition(getArmEncoder()-0.5);
-      }
+
+        armMotorTalonSRX.set(ControlMode.Position, length);
+
 
       }
-    }
+    
 
     
     public void p_armAngle(double angle){
