@@ -9,17 +9,20 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
+import frc.robot.commands.driveManual;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 
@@ -95,53 +98,6 @@ public class driveTrain extends SubsystemBase {
 
 		/* Zero the sensor once on robot boot up */
 		lma.setSelectedSensorPosition(0, Constants.leftMotorConfig.kPIDLoopIdx, Constants.leftMotorConfig.kTimeoutMs);
-
-    rmb.configFactoryDefault();
-		rmb.follow(rma);
-
-
-		/* Factory default hardware to prevent unexpected behavior */
-		rma.configFactoryDefault();
-
-		/* Configure Sensor Source for Pirmary PID */
-		rma.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,Constants.rightMotorConfig.kPIDLoopIdx,
-				Constants.rightMotorConfig.kTimeoutMs);
-
-		/* set deadband to super small 0.001 (0.1 %).
-			The default deadband is 0.04 (4 %) */
-		rma.configNeutralDeadband(0.001,Constants.rightMotorConfig.kTimeoutMs);
-
-		/**
-		 * Configure Talon SRX Output and Sensor direction accordingly Invert Motor to
-		 * have green LEDs when driving Talon Forward / Requesting Postiive Output Phase
-		 * sensor to have positive increment when driving Talon Forward (Green LED)
-		 */
-		rma.setSensorPhase(true);
-		rma.setInverted(false);
-
-		/* Set relevant frame periods to be at least as fast as periodic rate */
-		rma.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10,Constants.rightMotorConfig.kTimeoutMs);
-		rma.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,Constants.rightMotorConfig.kTimeoutMs);
-
-		/* Set the peak and nominal outputs */
-		rma.configNominalOutputForward(0,Constants.rightMotorConfig.kTimeoutMs);
-		rma.configNominalOutputReverse(0,Constants.rightMotorConfig.kTimeoutMs);
-		rma.configPeakOutputForward(1,Constants.rightMotorConfig.kTimeoutMs);
-		rma.configPeakOutputReverse(-1,Constants.rightMotorConfig.kTimeoutMs);
-
-		/* Set Motion Magic gains in slot0 - see documentation */
-		rma.selectProfileSlot(Constants.rightMotorConfig.kSlotIdx,Constants.rightMotorConfig.kPIDLoopIdx);
-		rma.config_kF(Constants.rightMotorConfig.kSlotIdx,Constants.rightMotorConfig.kGains.kF,Constants.rightMotorConfig.kTimeoutMs);
-		rma.config_kP(Constants.rightMotorConfig.kSlotIdx,Constants.rightMotorConfig.kGains.kP,Constants.rightMotorConfig.kTimeoutMs);
-		rma.config_kI(Constants.rightMotorConfig.kSlotIdx,Constants.rightMotorConfig.kGains.kI,Constants.rightMotorConfig.kTimeoutMs);
-		rma.config_kD(Constants.rightMotorConfig.kSlotIdx,Constants.rightMotorConfig.kGains.kD,Constants.rightMotorConfig.kTimeoutMs);
-
-		/* Set acceleration and vcruise velocity - see documentation */
-		rma.configMotionCruiseVelocity(3000,Constants.rightMotorConfig.kTimeoutMs);
-		rma.configMotionAcceleration(3000,Constants.rightMotorConfig.kTimeoutMs);
-
-		/* Zero the sensor once on robot boot up */
-		rma.setSelectedSensorPosition(0,Constants.rightMotorConfig.kPIDLoopIdx,Constants.rightMotorConfig.kTimeoutMs);
   }
 
   public void stop(){
@@ -152,12 +108,6 @@ public class driveTrain extends SubsystemBase {
     DifferentialDrive.arcadeDrive(speed, rotation);
   }
 
-  public void r_motionMagic(double position, String motor){
-    rma.set(ControlMode.MotionMagic, position);
-  }
-  public void l_motionMagic(double position, String motor){
-    lma.set(ControlMode.MotionMagic, position);
-  }
   public void sideSwipe(double speed){
     sideMotorVictorSPX.set(speed);
   }
