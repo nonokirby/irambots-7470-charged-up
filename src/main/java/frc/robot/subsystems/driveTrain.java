@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -70,6 +71,9 @@ public class driveTrain extends SubsystemBase {
   public static void resetEncoders(){
     r_driveEncoder.reset();
     l_driveEncoder.reset();
+  }
+  @Override
+  public void periodic(){
   }
 }
 

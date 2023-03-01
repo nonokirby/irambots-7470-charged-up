@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class gearShift extends SubsystemBase {
   Solenoid  shiftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.id_shiftSolenoid);
-  String position = "low";
+  static String position = "low";
   
 
 public void shift(boolean pos) {
@@ -23,8 +24,12 @@ public void shift(boolean pos) {
   position = "low";
  }
 }
-public String position(){
+public static String position(){
   return position;
+}
+@Override
+public void periodic(){
+  SmartDashboard.putString("gearshift", frc.robot.subsystems.gearShift.position());
 }
 }
 

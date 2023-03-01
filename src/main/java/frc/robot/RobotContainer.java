@@ -1,13 +1,8 @@
  
 package frc.robot;
 
-import javax.xml.crypto.dsig.spec.HMACParameterSpec;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.claw.*;
@@ -26,29 +21,26 @@ import frc.robot.subsystems.*;
     
     private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
     private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
-    private final JoystickButton a_armHigh = new JoystickButton(m_arcade, 7);
-    private final JoystickButton a_armMid = new JoystickButton(m_arcade, 9);
-    private final JoystickButton a_armLow = new JoystickButton(m_arcade, 11);
-    private final JoystickButton a_armStow = new JoystickButton(m_arcade, 12);
-    private final JoystickButton r_armBackward = new JoystickButton(m_driver, 9);
-    private final JoystickButton r_armFoward = new JoystickButton(m_driver, 10);
-    private final JoystickButton mw_armIn = new JoystickButton(m_driver,11);
-    private final JoystickButton mw_armOut = new JoystickButton(m_driver, 12);
+    private final JoystickButton a_armHigh = new JoystickButton(m_driver, 7);
+    private final JoystickButton a_armMid = new JoystickButton(m_driver, 9);
+    private final JoystickButton a_armLow = new JoystickButton(m_driver, 11);
+    private final JoystickButton a_armStow = new JoystickButton(m_driver, 12);
+    private final JoystickButton r_armBackward = new JoystickButton(m_arcade, 9);
+    private final JoystickButton r_armFoward = new JoystickButton(m_arcade, 10);
+    private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
+    private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12);
 
 
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
-    SmartDashboard.putNumber("linear encoder", arm.getArmEncoder());
-    SmartDashboard.putNumber("directional encoder", arm.getDirEncoder());
-    SmartDashboard.putString("gearshift", gearShift.position());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
  }
 
 private void configureButtonBindings() {
-  clawGrabSquare.onTrue(new clawGrabSquare());
-  clawGrabSquare.onFalse(new clawReleaseSquare());
+  clawGrabSquare.toggleOnTrue(new clawGrabSquare());
+  clawGrabSquare.toggleOnTrue(new clawReleaseSquare());
   clawGrabCone.onTrue(new clawGrabCone());
   clawGrabCone.onFalse(new clawReleaseCone());
   r_armBackward.whileTrue(new r_armBackward());

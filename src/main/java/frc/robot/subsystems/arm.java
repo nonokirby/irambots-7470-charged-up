@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -58,11 +59,11 @@ public class arm extends SubsystemBase {
         directionalMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
-    public double getArmEncoder() {
+    public static double getArmEncoder() {
         return armMotorTalonSRX.getSelectedSensorPosition();
     }
 
-    public double getDirEncoder() {
+    public static double getDirEncoder() {
         return directionalMotorTalonSRX.getSelectedSensorPosition();
     }
     
@@ -73,5 +74,10 @@ public class arm extends SubsystemBase {
     }
     public void p_armAngle(double angle){
       directionalMotorTalonSRX.set(ControlMode.Position, angle);
+    }
+    @Override
+    public void periodic(){
+      SmartDashboard.putNumber("linear encoder", getArmEncoder());
+      SmartDashboard.putNumber("directional encoder", getDirEncoder());
     }
 }   

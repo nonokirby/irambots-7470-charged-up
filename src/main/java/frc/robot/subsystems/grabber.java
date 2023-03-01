@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -19,6 +20,9 @@ public void s_grabberToggle(Value Value) {
 }
 public void l_grabberToggle(Value Value) {
   l_grabSolenoid.set(Value);
+}
+@Override
+public void periodic(){
 }
 }
 
