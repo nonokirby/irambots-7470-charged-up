@@ -21,10 +21,10 @@ import frc.robot.subsystems.*;
     
     private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
     private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
-    private final JoystickButton a_armHigh = new JoystickButton(m_driver, 7);
-    private final JoystickButton a_armMid = new JoystickButton(m_driver, 9);
-    private final JoystickButton a_armLow = new JoystickButton(m_driver, 11);
-    private final JoystickButton a_armStow = new JoystickButton(m_driver, 12);
+    private final JoystickButton a_armHigh = new JoystickButton(m_arcade, 3);
+    private final JoystickButton a_armMid = new JoystickButton(m_arcade, 4);
+    private final JoystickButton a_armLow = new JoystickButton(m_arcade, 5);
+    private final JoystickButton a_armStow = new JoystickButton(m_arcade, 6);
     private final JoystickButton r_armBackward = new JoystickButton(m_arcade, 9);
     private final JoystickButton r_armFoward = new JoystickButton(m_arcade, 10);
     private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
