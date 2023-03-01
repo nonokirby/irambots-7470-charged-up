@@ -152,10 +152,10 @@ public class driveTrain extends SubsystemBase {
     DifferentialDrive.arcadeDrive(speed, rotation);
   }
 
-  public void r_motionMagic(double position){
+  public void r_motionMagic(double position, String motor){
     rma.set(ControlMode.MotionMagic, position);
   }
-  public void l_motionMagic(double position){
+  public void l_motionMagic(double position, String motor){
     lma.set(ControlMode.MotionMagic, position);
   }
   public void sideSwipe(double speed){
