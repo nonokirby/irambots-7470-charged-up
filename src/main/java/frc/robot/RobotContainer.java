@@ -36,6 +36,7 @@ import frc.robot.subsystems.*;
     SmartDashboard.putNumber("linear encoder", armLinear.getLinEncoder());
     SmartDashboard.putNumber("directional encoder", armDirectional.getDirEncoder());
     SmartDashboard.putString("gearshift", gearShift.position());
+    SmartDashboard.putData("reset encoders", new resetEncoders());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
