@@ -12,6 +12,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   @SuppressWarnings("unused")
   private RobotContainer m_robotContainer;
+  
 
   @Override
   public void robotInit() {
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
@@ -41,7 +43,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-
   }
 
   @Override

@@ -2,7 +2,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.claw.*;
@@ -15,6 +18,8 @@ import frc.robot.subsystems.*;
     public final static arm arm = new arm();
     public final static driveTrain driveTrain = new driveTrain();
     public final static gearShift gearShift = new gearShift();
+    private final SendableChooser<SequentialCommandGroup> autoChooser;
+    private final AutoCommands autos;    
 
     public final static Joystick m_driver = new Joystick(1);
     public final static Joystick m_arcade = new Joystick(0);
@@ -32,6 +37,8 @@ import frc.robot.subsystems.*;
 
 
   public RobotContainer() {
+    autos = new AutoCommands();
+    autoChooser = new SendableChooser<>();
     SmartDashboard.putData("reset encoders", new resetEncoders());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
@@ -51,5 +58,11 @@ private void configureButtonBindings() {
   a_armMid.onTrue(new a_armLow());
   a_armLow.onTrue(new a_armLow());
   a_armStow.onTrue(new a_armStow());
+  }
+
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+   // return new exampleAuto(s_Swerve);
+   return autoChooser.getSelected();
   }
 }
