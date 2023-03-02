@@ -60,7 +60,7 @@ public class driveTrain extends SubsystemBase {
     sideMotorVictorSPX.set(speed);
   }
 
-  public double l_getEncoder(){
+  public static double l_getEncoder(){
     return l_driveEncoder.getRaw();
   }
   

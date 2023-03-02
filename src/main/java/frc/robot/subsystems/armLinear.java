@@ -42,15 +42,7 @@ public class armLinear extends SubsystemBase {
     }
 
     public void armWinch(double speed) {
-
-        if(speed < 0 && getLinEncoder() <= 2500){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-        } else if(speed > 0 && getLinEncoder() >= -28512){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-        }
-          else {
-              armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
-        }
+      
     }
     
     public static void resetEncoders() {

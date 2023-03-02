@@ -31,15 +31,11 @@ import frc.robot.subsystems.*;
     private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
     private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12);
 
-
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
-<<<<<<< Updated upstream
-=======
     SmartDashboard.putNumber("linear encoder", armLinear.getLinEncoder());
     SmartDashboard.putNumber("directional encoder", armDirectional.getDirEncoder());
     SmartDashboard.putString("gearshift", gearShift.position());
->>>>>>> Stashed changes
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());

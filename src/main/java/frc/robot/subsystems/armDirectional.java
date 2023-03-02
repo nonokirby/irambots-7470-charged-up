@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.math.controller.PIDController;
 
-
+@SuppressWarnings("unused")
 public class armDirectional extends SubsystemBase {
 
     private static TalonSRX directionalMotorTalonSRX;
