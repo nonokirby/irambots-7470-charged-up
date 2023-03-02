@@ -21,8 +21,7 @@ import frc.robot.subsystems.armLinear;
     public final static armLinear armLinear = new armLinear();
     public final static driveTrain driveTrain = new driveTrain();
     public final static gearShift gearShift = new gearShift();
-    private final SendableChooser<SequentialCommandGroup> autoChooser;
-    private final AutoCommands autos;    
+    private final SendableChooser<SequentialCommandGroup> autoChooser;   
 
     public final static Joystick m_driver = new Joystick(1);
     public final static Joystick m_arcade = new Joystick(0);
@@ -40,7 +39,6 @@ import frc.robot.subsystems.armLinear;
 
 
   public RobotContainer() {
-    autos = new AutoCommands();
     autoChooser = new SendableChooser<>();
     SmartDashboard.putData("reset encoders", new resetEncoders());
     configureButtonBindings();
