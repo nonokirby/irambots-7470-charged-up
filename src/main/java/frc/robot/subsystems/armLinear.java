@@ -17,31 +17,21 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 
 
-public class arm extends SubsystemBase {
+public class armLinear extends SubsystemBase {
 
-    private static TalonSRX directionalMotorTalonSRX;
     private static TalonSRX armMotorTalonSRX;
     
-    public arm(){
-
+    public armLinear(){
       armMotorTalonSRX = new WPI_TalonSRX(Constants.id_armMotor);
       armMotorTalonSRX.configFactoryDefault();
       armMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
       armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
-      
-      directionalMotorTalonSRX = new WPI_TalonSRX(Constants.id_directionalMotor);
-      directionalMotorTalonSRX.configFactoryDefault();
-      directionalMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
-      directionalMotorTalonSRX.set(ControlMode.PercentOutput, 0);
     }
 
     public void mw_armWinch(double speed) {
         armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
     }
 
-    public void armMove(double speed) {
-        directionalMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_directionalMotorSpeed);
-    }
 
     public void armWinch(double speed) {
 
@@ -57,15 +47,10 @@ public class arm extends SubsystemBase {
     
     public static void resetEncoders() {
         armMotorTalonSRX.setSelectedSensorPosition(0);
-        directionalMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
     public static double getArmEncoder() {
         return armMotorTalonSRX.getSelectedSensorPosition();
-    }
-
-    public static double getDirEncoder() {
-        return directionalMotorTalonSRX.getSelectedSensorPosition();
     }
     
     // -29398.000000
@@ -86,13 +71,8 @@ public class arm extends SubsystemBase {
       }
     }
 
-    
-    public void p_armAngle(double angle){
-      directionalMotorTalonSRX.set(ControlMode.Position, angle);
-    }
     @Override
     public void periodic(){
       SmartDashboard.putNumber("linear encoder", getArmEncoder());
-      SmartDashboard.putNumber("directional encoder", getDirEncoder());
     }
 }   

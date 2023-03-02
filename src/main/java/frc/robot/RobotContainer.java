@@ -12,10 +12,13 @@ import frc.robot.commands.claw.*;
 import frc.robot.commands.arm.*;
 import frc.robot.commands.encoders.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.armDirectional;
+import frc.robot.subsystems.armLinear;
 
  public class RobotContainer {
     public final static grabber grabber = new grabber();
-    public final static arm arm = new arm();
+    public final static armDirectional armDirectional = new armDirectional();
+    public final static armLinear armLinear = new armLinear();
     public final static driveTrain driveTrain = new driveTrain();
     public final static gearShift gearShift = new gearShift();
     private final SendableChooser<SequentialCommandGroup> autoChooser;

@@ -14,12 +14,13 @@ import frc.robot.RobotContainer;
 public class a_armHigh extends InstantCommand{
 
   public a_armHigh() {
-    addRequirements(RobotContainer.arm);
+    addRequirements(RobotContainer.armLinear);
+    addRequirements(RobotContainer.armDirectional);
   }
 
   @Override
   public void initialize(){
-    RobotContainer.arm.p_armLength(Constants.pos_high_armLength);
-    RobotContainer.arm.p_armAngle(Constants.pos_high_armAngle);
+    RobotContainer.armLinear.p_armLength(Constants.pos_high_armLength);
+    RobotContainer.armDirectional.p_armAngle(Constants.pos_high_armAngle);
   }
 }

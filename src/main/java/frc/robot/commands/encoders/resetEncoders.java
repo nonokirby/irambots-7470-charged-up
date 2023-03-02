@@ -1,7 +1,7 @@
 package frc.robot.commands.encoders;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.arm;
+import frc.robot.subsystems.armDirectional;
 import frc.robot.subsystems.driveTrain;
 
 public class resetEncoders extends InstantCommand{
@@ -10,7 +10,7 @@ public class resetEncoders extends InstantCommand{
 
     @Override
     public void initialize(){
-        arm.resetEncoders();
+        armDirectional.resetEncoders();
         driveTrain.resetEncoders();
     }
 }
