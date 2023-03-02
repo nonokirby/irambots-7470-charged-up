@@ -40,7 +40,7 @@ import frc.robot.subsystems.armLinear;
 
   public RobotContainer() {
     autoChooser = new SendableChooser<>();
-    SmartDashboard.putData("reset encoders", new resetEncoders());
+    SmartDashboard.putData("reset encoders", new e_resetEncoders());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());

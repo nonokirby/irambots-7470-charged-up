@@ -35,9 +35,9 @@ public class armLinear extends SubsystemBase {
 
     public void armWinch(double speed) {
 
-        if(speed < 0 && getArmEncoder() <= 2500){
+        if(speed < 0 && getLinEncoder() <= 2500){
           armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-        } else if(speed > 0 && getArmEncoder() >= -28512){
+        } else if(speed > 0 && getLinEncoder() >= -28512){
           armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
         }
           else {
@@ -45,11 +45,11 @@ public class armLinear extends SubsystemBase {
         }
     }
     
-    public static void resetEncoders() {
+    public static void resetEncoder() {
         armMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
-    public static double getArmEncoder() {
+    public static double getLinEncoder() {
         return armMotorTalonSRX.getSelectedSensorPosition();
     }
     
@@ -61,11 +61,11 @@ public class armLinear extends SubsystemBase {
   
       if (error < 0){
         armMotorTalonSRX.set(ControlMode.PercentOutput, 0.5);
-        armMotorTalonSRX.setSelectedSensorPosition(getArmEncoder()+0.5);
+        armMotorTalonSRX.setSelectedSensorPosition(getLinEncoder()+0.5);
       }
       if (error > 0){
         armMotorTalonSRX.set(ControlMode.PercentOutput, -0.5);
-        armMotorTalonSRX.setSelectedSensorPosition(getArmEncoder()-0.5);
+        armMotorTalonSRX.setSelectedSensorPosition(getLinEncoder()-0.5);
       }
 
       }
@@ -73,6 +73,6 @@ public class armLinear extends SubsystemBase {
 
     @Override
     public void periodic(){
-      SmartDashboard.putNumber("linear encoder", getArmEncoder());
+      SmartDashboard.putNumber("linear encoder", getLinEncoder());
     }
 }   
