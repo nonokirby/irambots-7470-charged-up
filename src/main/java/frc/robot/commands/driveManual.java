@@ -29,7 +29,7 @@ public class driveManual extends CommandBase {
     if((speed < -0.1 || speed > 0.1) && (rotation < 0.2 && rotation > -0.2)){
       rotation = 0;
     }
-    RobotContainer.driveTrain.driveArcade(-speed * Constants.lm_driveTrainSpeed, rotation * Constants.lm_driveTrainRotation);
+    RobotContainer.driveTrain.driveCurvature(-speed * Constants.lm_driveTrainSpeed, rotation * Constants.lm_driveTrainRotation, true);
 
      if (swipeSpeed <= 0.1 || swipeSpeed >= -0.1){
        RobotContainer.driveTrain.sideSwipe(swipeSpeed * Constants.lm_driveTrainSide);
