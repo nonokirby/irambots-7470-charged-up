@@ -54,4 +54,10 @@ public final class Constants {
   public static int ax_driveTrainRotation = 1;
   public static int ax_driveTrainSwipe    = 0;
   public static int ax_gearShift          = 3;
+
+  public static double db_driveTrainSpeed         = 0.05;
+  public static double db_driveTrainRotationStill = 0.05;
+  public static double db_driveTrainRotationMove  = 0.3;
+  public static double db_driveTrainRotationSpeed = 0.2;
+  public static double db_driveTrainSwipe         = 0.05;
 }
