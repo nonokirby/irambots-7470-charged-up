@@ -17,14 +17,14 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.math.controller.PIDController;
 
 
-public class arm extends SubsystemBase {
+public class armDirectional extends SubsystemBase {
 
     private static TalonSRX directionalMotorTalonSRX;
     private static TalonSRX armMotorTalonSRX;
     private PIDController linearPIDController;
 
     
-    public arm(){
+    public armDirectional(){
 
       armMotorTalonSRX = new WPI_TalonSRX(Constants.id_armMotor);
       armMotorTalonSRX.configFactoryDefault();

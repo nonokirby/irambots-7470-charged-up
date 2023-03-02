@@ -13,12 +13,13 @@ import frc.robot.RobotContainer;
 public class r_armFoward extends CommandBase {
 
   public r_armFoward() { 
-    addRequirements(RobotContainer.arm);
+    addRequirements(RobotContainer.armLinear);
+    addRequirements(RobotContainer.armDirectional);
   }
 
   @Override
   public void execute() {
-    RobotContainer.arm.armMove(-0.3);
+    RobotContainer.armDirectional.armMove(-0.3);
   }
 
   @Override
@@ -28,6 +29,6 @@ public class r_armFoward extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.arm.armMove(0);
+    RobotContainer.armDirectional.armMove(0);
   }
 }

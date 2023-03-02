@@ -13,12 +13,13 @@ import frc.robot.RobotContainer;
 public class w_armRetract extends CommandBase {
 
   public w_armRetract() {
-    addRequirements(RobotContainer.arm);
+    addRequirements(RobotContainer.armLinear);
+    addRequirements(RobotContainer.armDirectional);
   }
 
   @Override
   public void execute (){
-    RobotContainer.arm.armWinch(1);
+    RobotContainer.armLinear.armWinch(1);
   }
   
   @Override
@@ -28,7 +29,7 @@ public class w_armRetract extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.arm.armWinch(0);
+    RobotContainer.armLinear.armWinch(0);
   }
 
 }

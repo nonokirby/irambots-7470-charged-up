@@ -12,9 +12,10 @@ import frc.robot.subsystems.*;
 
  public class RobotContainer {
     public final static grabber grabber = new grabber();
-    public final static arm arm = new arm();
+    public final static armDirectional armDirectional = new armDirectional();
     public final static driveTrain driveTrain = new driveTrain();
     public final static gearShift gearShift = new gearShift();
+    public final static armLinear armLinear = new armLinear();
 
     public final static Joystick m_driver = new Joystick(1);
     public final static Joystick m_arcade = new Joystick(0);
@@ -33,6 +34,12 @@ import frc.robot.subsystems.*;
 
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
+<<<<<<< Updated upstream
+=======
+    SmartDashboard.putNumber("linear encoder", armLinear.getLinEncoder());
+    SmartDashboard.putNumber("directional encoder", armDirectional.getDirEncoder());
+    SmartDashboard.putString("gearshift", gearShift.position());
+>>>>>>> Stashed changes
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());

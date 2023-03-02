@@ -13,12 +13,13 @@ import frc.robot.RobotContainer;
 public class mw_armIn extends CommandBase {
 
     public mw_armIn() { 
-        addRequirements(RobotContainer.arm);
+        addRequirements(RobotContainer.armLinear);
+    addRequirements(RobotContainer.armDirectional);
     }
 
     @Override
     public void execute() {
-        RobotContainer.arm.mw_armWinch(1);
+        RobotContainer.armLinear.mw_armWinch(1);
     }
 
     @Override
@@ -28,6 +29,6 @@ public class mw_armIn extends CommandBase {
 
     @Override
     public void end(boolean interupted) {
-        RobotContainer.arm.mw_armWinch(0);
+        RobotContainer.armLinear.mw_armWinch(0);
     }
 }

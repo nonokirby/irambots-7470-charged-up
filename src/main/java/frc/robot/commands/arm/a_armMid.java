@@ -14,12 +14,13 @@ import frc.robot.RobotContainer;
 public class a_armMid extends InstantCommand{
 
   public a_armMid() {
-    addRequirements(RobotContainer.arm);
+    addRequirements(RobotContainer.armLinear);
+    addRequirements(RobotContainer.armDirectional);
   }
 
   @Override
   public void initialize(){
-    RobotContainer.arm.p_armLength(Constants.pos_mid_armLength);
-    RobotContainer.arm.p_armAngle(Constants.pos_mid_armAngle);
+    RobotContainer.armLinear.p_armLength(Constants.pos_mid_armLength);
+    RobotContainer.armDirectional.p_armAngle(Constants.pos_mid_armAngle);
   }
 }
