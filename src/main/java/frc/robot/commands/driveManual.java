@@ -1,5 +1,6 @@
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -15,9 +16,12 @@ public class driveManual extends CommandBase {
 
     @Override
     public void execute() {
+
     double speed = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainSpeed);
     double rotation = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainRotation);
     double swipeSpeed = RobotContainer.m_driver.getRawAxis(Constants.ax_driveTrainSwipe);
+
+    SmartDashboard.putNumber("set speed", speed);
 
     if(speed > -0.1 && speed < 0.1){
       speed = 0;

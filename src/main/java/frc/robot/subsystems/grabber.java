@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class grabber extends SubsystemBase {
-  DoubleSolenoid s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_sGrabSolenoidF, Constants.id_sGrabSolenoidR);
-  DoubleSolenoid l_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_lGrabSolenoidF, Constants.id_lGrabSolenoidR);
+ public DoubleSolenoid s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_sGrabSolenoidF, Constants.id_sGrabSolenoidR);
+  public DoubleSolenoid l_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_lGrabSolenoidF, Constants.id_lGrabSolenoidR);
 
 
 public void s_grabberToggle(Value Value) {

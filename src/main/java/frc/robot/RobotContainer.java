@@ -2,7 +2,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.claw.*;
@@ -16,6 +21,7 @@ import frc.robot.subsystems.*;
     public final static driveTrain driveTrain = new driveTrain();
     public final static gearShift gearShift = new gearShift();
     public final static armLinear armLinear = new armLinear();
+    
 
     public final static Joystick m_driver = new Joystick(1);
     public final static Joystick m_arcade = new Joystick(0);
@@ -37,6 +43,7 @@ import frc.robot.subsystems.*;
     SmartDashboard.putNumber("directional encoder", armDirectional.getDirEncoder());
     SmartDashboard.putString("gearshift", gearShift.position());
     SmartDashboard.putData("reset encoders", new resetEncoders());
+    //SmartDashboard.putDat("autonomous", autoChooser());
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
@@ -55,5 +62,19 @@ private void configureButtonBindings() {
   a_armMid.onTrue(new a_armLow());
   a_armLow.onTrue(new a_armLow());
   a_armStow.onTrue(new a_armStow());
+  }
+
+  public Command getAutonomousCommand() {
+    return new SequentialCommandGroup(
+    // new RunCommand(() -> driveTrain.driveArcade(0.5, 0.0), driveTrain).withTimeout(3.0),
+     //new RunCommand(() -> driveTrain.driveArcade(0, 0)));
+
+     new RunCommand(() -> grabber.s_grabSolenoid.set(Value.kForward), grabber).withTimeout(3.0),
+     new RunCommand(() -> armDirectional.armMove(1.0), armDirectional).withTimeout(3.0),
+     new RunCommand(() -> armLinear.armMove(1.0), armLinear).withTimeout(3.0),
+     new RunCommand(() -> grabber.s_grabSolenoid.set(Value.kReverse), grabber).withTimeout(2.0));
+
+
+
   }
 }

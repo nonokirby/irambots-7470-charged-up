@@ -33,7 +33,7 @@ public class driveTrain extends SubsystemBase {
 
   MotorControllerGroup driveTrainRightMotors = new MotorControllerGroup(driveTrainRightMotorA, driveTrainRightMotorB);
 
-  DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
+  public DifferentialDrive DifferentialDrive = new DifferentialDrive(driveTrainLeftMotors, driveTrainRightMotors);
 
   public static Encoder r_driveEncoder = new Encoder(0, 1);
   public static Encoder l_driveEncoder = new Encoder(2, 3);
@@ -53,11 +53,13 @@ public class driveTrain extends SubsystemBase {
   }
 
   public void driveArcade(double speed, double rotation){
-    DifferentialDrive.arcadeDrive(speed, rotation);
+    driveTrainLeftMotors.set(speed + rotation);
+    driveTrainRightMotors.set(speed - rotation);
+
   }
 
   public void sideSwipe(double speed){
-    sideMotorVictorSPX.set(speed);
+    sideMotorVictorSPX.set(-speed);
   }
 
   public static double l_getEncoder(){

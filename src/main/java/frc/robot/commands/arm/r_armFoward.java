@@ -19,7 +19,7 @@ public class r_armFoward extends CommandBase {
 
   @Override
   public void execute() {
-    RobotContainer.armDirectional.armMove(-0.3);
+    RobotContainer.armDirectional.armMove(-0.4);
   }
 
   @Override
