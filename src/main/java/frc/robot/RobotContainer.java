@@ -3,6 +3,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -25,6 +26,8 @@ import frc.robot.subsystems.*;
 
     public final static Joystick m_driver = new Joystick(1);
     public final static Joystick m_arcade = new Joystick(0);
+
+    SendableChooser<SequentialCommandGroup> autoChooser;
     
     private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
     private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
@@ -43,12 +46,40 @@ import frc.robot.subsystems.*;
     SmartDashboard.putNumber("directional encoder", armDirectional.getDirEncoder());
     SmartDashboard.putString("gearshift", gearShift.position());
     SmartDashboard.putData("reset encoders", new resetEncoders());
-    //SmartDashboard.putDat("autonomous", autoChooser());
+
     configureButtonBindings();
     driveTrain.setDefaultCommand(new driveManual());
     gearShift.setDefaultCommand(new shifter());
- }
 
+    SequentialCommandGroup a_mid_taxiBack = new SequentialCommandGroup(
+    new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kForward), grabber), 
+    new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kReverse), grabber),
+    new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
+    new InstantCommand(()   -> armDirectional.armMove(0), armDirectional),
+    new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kReverse),grabber),
+    new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kForward), grabber),
+    new RunCommand(()   -> gearShift.shift(true),gearShift).withTimeout(3),
+    new RunCommand(()   -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(1),
+    new RunCommand(()   -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(3),
+    new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
+
+    SequentialCommandGroup a_mid_taxiCharge = new SequentialCommandGroup(
+      new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kForward), grabber), 
+      new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kReverse), grabber),
+      new RunCommand(()       -> armDirectional.armMove(-0.65), armDirectional).withTimeout(2.5),
+      new InstantCommand(()   -> armDirectional.armMove(0), armDirectional),
+      new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kReverse),grabber),
+      new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kForward), grabber),
+      new RunCommand(()       -> gearShift.shift(true),gearShift).withTimeout(3),
+      new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(9),
+      new RunCommand(()       -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(4),
+      new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
+
+    autoChooser = new SendableChooser<>();
+    autoChooser.setDefaultOption("mid & taxi", a_mid_taxiBack);
+    autoChooser.addOption("mid & taxi charge", a_mid_taxiCharge );
+    SmartDashboard.putData(autoChooser);
+ }
 private void configureButtonBindings() {
   clawGrabSquare.toggleOnTrue(new clawGrabSquare());
   clawGrabSquare.toggleOnTrue(new clawReleaseSquare());
@@ -65,16 +96,8 @@ private void configureButtonBindings() {
   }
 
   public Command getAutonomousCommand() {
-    return new SequentialCommandGroup(
-    // new RunCommand(() -> driveTrain.driveArcade(0.5, 0.0), driveTrain).withTimeout(3.0),
-     //new RunCommand(() -> driveTrain.driveArcade(0, 0)));
-
-     new RunCommand(() -> grabber.s_grabSolenoid.set(Value.kForward), grabber).withTimeout(3.0),
-     new RunCommand(() -> armDirectional.armMove(1.0), armDirectional).withTimeout(3.0),
-     new RunCommand(() -> armLinear.armMove(1.0), armLinear).withTimeout(3.0),
-     new RunCommand(() -> grabber.s_grabSolenoid.set(Value.kReverse), grabber).withTimeout(2.0));
-
-
+    
+    return autoChooser.getSelected();
 
   }
 }

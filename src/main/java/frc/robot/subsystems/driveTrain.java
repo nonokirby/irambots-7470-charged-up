@@ -53,8 +53,7 @@ public class driveTrain extends SubsystemBase {
   }
 
   public void driveArcade(double speed, double rotation){
-    driveTrainLeftMotors.set(speed + rotation);
-    driveTrainRightMotors.set(speed - rotation);
+    DifferentialDrive.arcadeDrive(speed, rotation);
 
   }
 
