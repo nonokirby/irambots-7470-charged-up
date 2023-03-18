@@ -7,20 +7,27 @@
 
 package frc.robot.commands.arm;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class a_armHigh extends InstantCommand{
-  public a_armHigh() {
-    addRequirements(RobotContainer.armLinear);
-    addRequirements(RobotContainer.armDirectional);
+public class pullIn extends CommandBase {
+
+  public pullIn() {
+    RobotContainer.armDirectional.armMove(-0.4);
+    RobotContainer.armLinear.armWinch(1);
+
+  }
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 
   @Override
-  public void initialize(){
-    RobotContainer.armLinear.p_armLength(Constants.pos_high_armLength);
-    RobotContainer.armDirectional.p_armAngle(Constants.pos_high_armAngle);
-    
+  public void end(boolean interrupted) {
+    RobotContainer.armLinear.armWinch(0);
+    RobotContainer.armDirectional.armMove(0);
   }
+
 }
+
+

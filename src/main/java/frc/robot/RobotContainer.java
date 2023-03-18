@@ -39,7 +39,7 @@ import frc.robot.subsystems.*;
     private final JoystickButton r_armFoward = new JoystickButton(m_arcade, 10);
     private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
     private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12);
-
+    private final JoystickButton pullIn = new JoystickButton (m_arcade,8);
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
     SmartDashboard.putNumber("linear encoder", armLinear.getLinEncoder());
@@ -71,8 +71,8 @@ import frc.robot.subsystems.*;
       new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kReverse),grabber),
       new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kForward), grabber),
       new RunCommand(()       -> gearShift.shift(true),gearShift).withTimeout(3),
-      new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(9),
-      new RunCommand(()       -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(4),
+      new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(2),
+      new RunCommand(()       -> driveTrain.driveArcade(0, 0.6), driveTrain).withTimeout(4),
       new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
 
     autoChooser = new SendableChooser<>();
@@ -93,6 +93,7 @@ private void configureButtonBindings() {
   a_armMid.onTrue(new a_armLow());
   a_armLow.onTrue(new a_armLow());
   a_armStow.onTrue(new a_armStow());
+  pullIn.whileTrue(new pullIn());
   }
 
   public Command getAutonomousCommand() {
