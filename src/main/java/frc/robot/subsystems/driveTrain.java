@@ -58,6 +58,7 @@ public class driveTrain extends SubsystemBase {
   }
 
   public void sideSwipe(double speed){
+    
     sideMotorVictorSPX.set(-speed);
   }
 

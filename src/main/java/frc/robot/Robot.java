@@ -15,6 +15,7 @@ public class Robot extends TimedRobot {
   @SuppressWarnings("unused")
   private RobotContainer m_robotContainer;
 
+  @SuppressWarnings("unused")
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();

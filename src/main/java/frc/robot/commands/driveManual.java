@@ -37,6 +37,7 @@ public class driveManual extends CommandBase {
 
      if (swipeSpeed <= 0.1 || swipeSpeed >= -0.1){
        RobotContainer.driveTrain.sideSwipe(swipeSpeed * Constants.lm_driveTrainSide);
+       
      }
     }
 

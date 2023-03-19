@@ -44,6 +44,7 @@ public class armDirectional extends SubsystemBase {
 
     public void armMove(double speed) {
         directionalMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_directionalMotorSpeed);
+        System.out.print("armMove");
     }
 
     public void armWinch(double speed) {

@@ -3,22 +3,16 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class grabber extends SubsystemBase {
- public DoubleSolenoid s_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_sGrabSolenoidF, Constants.id_sGrabSolenoidR);
-  public DoubleSolenoid l_grabSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.id_lGrabSolenoidF, Constants.id_lGrabSolenoidR);
+  WPI_VictorSPX grabberMotor = new WPI_VictorSPX(Constants.id_grabberMotor);
 
-
-public void s_grabberToggle(Value Value) {
-  s_grabSolenoid.set(Value);
-}
-public void l_grabberToggle(Value Value) {
-  l_grabSolenoid.set(Value);
+public void gMove(Double speed) {
+  grabberMotor.set(0);
 }
 @Override
 public void periodic(){

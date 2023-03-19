@@ -27,11 +27,9 @@ public final class Constants {
   public static int id_sideMotor          = 4; 
   public static int id_directionalMotor   = 13;
   public static int id_armMotor           = 14;
+  public static int id_grabberMotor       = 99;
   public static int id_shiftSolenoid      = 4;
-  public static int id_sGrabSolenoidF     = 6;
-  public static int id_sGrabSolenoidR     = 7;
-  public static int id_lGrabSolenoidF     = 1;
-  public static int id_lGrabSolenoidR     = 0;
+  public static int id_liftSolenoid       = 5;
 
   //1024 per full revolution
   public static int pos_high_armLength    = 306010;

@@ -2,7 +2,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -11,11 +10,10 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.commands.claw.*;
 import frc.robot.commands.arm.*;
 import frc.robot.commands.encoders.*;
 import frc.robot.subsystems.*;
-
+@SuppressWarnings("unused")
  public class RobotContainer {
     public final static grabber grabber = new grabber();
     public final static armDirectional armDirectional = new armDirectional();
@@ -29,8 +27,9 @@ import frc.robot.subsystems.*;
 
     SendableChooser<SequentialCommandGroup> autoChooser;
     
-    private final JoystickButton clawGrabCone = new JoystickButton(m_arcade,1);
-    private final JoystickButton clawGrabSquare = new JoystickButton(m_arcade, 2);
+    
+    private final JoystickButton grab = new JoystickButton(m_arcade,1);
+    private final JoystickButton release = new JoystickButton(m_arcade, 2);
     private final JoystickButton a_armHigh = new JoystickButton(m_arcade, 3);
     private final JoystickButton a_armMid = new JoystickButton(m_arcade, 4);
     private final JoystickButton a_armLow = new JoystickButton(m_arcade, 5);
@@ -40,6 +39,7 @@ import frc.robot.subsystems.*;
     private final JoystickButton mw_armIn = new JoystickButton(m_arcade,11);
     private final JoystickButton mw_armOut = new JoystickButton(m_arcade, 12);
     private final JoystickButton pullIn = new JoystickButton (m_arcade,8);
+    @SuppressWarnings("all")
   public RobotContainer() {
     SmartDashboard.putData("reset encoders", new resetEncoders());
     SmartDashboard.putNumber("linear encoder", armLinear.getLinEncoder());
@@ -52,28 +52,20 @@ import frc.robot.subsystems.*;
     gearShift.setDefaultCommand(new shifter());
 
     SequentialCommandGroup a_mid_taxiBack = new SequentialCommandGroup(
-    new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kForward), grabber), 
-    new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kReverse), grabber),
-    new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
+    new RunCommand(()       -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
     new InstantCommand(()   -> armDirectional.armMove(0), armDirectional),
-    new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kReverse),grabber),
-    new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kForward), grabber),
-    new RunCommand(()   -> gearShift.shift(true),gearShift).withTimeout(3),
-    new RunCommand(()   -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(1),
-    new RunCommand(()   -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(3),
+    new RunCommand(()       -> gearShift.shift(true),gearShift).withTimeout(3),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(1),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(3),
     new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
 
     SequentialCommandGroup a_mid_taxiCharge = new SequentialCommandGroup(
-      new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kForward), grabber), 
-      new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kReverse), grabber),
-      new RunCommand(()       -> armDirectional.armMove(-0.65), armDirectional).withTimeout(2.5),
-      new InstantCommand(()   -> armDirectional.armMove(0), armDirectional),
-      new InstantCommand(()   -> grabber.s_grabSolenoid.set(Value.kReverse),grabber),
-      new InstantCommand(()   -> grabber.l_grabSolenoid.set(Value.kForward), grabber),
-      new RunCommand(()       -> gearShift.shift(true),gearShift).withTimeout(3),
-      new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(2),
-      new RunCommand(()       -> driveTrain.driveArcade(0, 0.6), driveTrain).withTimeout(4),
-      new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
+    new RunCommand(()       -> armDirectional.armMove(-0.65), armDirectional).withTimeout(2.5),
+    new InstantCommand(()   -> armDirectional.armMove(0), armDirectional),
+    new RunCommand(()       -> gearShift.shift(true),gearShift).withTimeout(3),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0.3),driveTrain).withTimeout(2),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0.6),driveTrain).withTimeout(4),
+    new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
 
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("mid & taxi", a_mid_taxiBack);
@@ -81,10 +73,10 @@ import frc.robot.subsystems.*;
     SmartDashboard.putData(autoChooser);
  }
 private void configureButtonBindings() {
-  clawGrabSquare.toggleOnTrue(new clawGrabSquare());
-  clawGrabSquare.toggleOnTrue(new clawReleaseSquare());
-  clawGrabCone.onTrue(new clawGrabCone());
-  clawGrabCone.onFalse(new clawReleaseCone());
+  grab.onTrue(new grab("in"));
+  grab.onFalse(new grab("hold"));
+  release.onTrue(new grab("out"));
+  release.onFalse(new grab("hold"));
   r_armBackward.whileTrue(new r_armBackward());
   r_armFoward.whileTrue(new r_armFoward());
   mw_armIn.whileTrue(new mw_armIn());

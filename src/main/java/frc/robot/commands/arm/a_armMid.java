@@ -7,20 +7,32 @@
 
 package frc.robot.commands.arm;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.armDirectional;
 
 public class a_armMid extends InstantCommand{
+
+  public final static armDirectional armDirectional = new armDirectional();
 
   public a_armMid() {
     addRequirements(RobotContainer.armLinear);
     addRequirements(RobotContainer.armDirectional);
   }
-
+  @SuppressWarnings("resource")
   @Override
   public void initialize(){
-    RobotContainer.armLinear.p_armLength(Constants.pos_mid_armLength);
-    RobotContainer.armDirectional.p_armAngle(Constants.pos_mid_armAngle);
+    SequentialCommandGroup a_armMid = new SequentialCommandGroup(
+    new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
+    new InstantCommand(()   -> armDirectional.armMove(0), armDirectional));
+    SendableChooser<SequentialCommandGroup> autoChooser;
+    autoChooser = new SendableChooser<>();
+    autoChooser.setDefaultOption("a_armMid", a_armMid);
   }
 }
