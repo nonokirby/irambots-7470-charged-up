@@ -41,7 +41,7 @@ public class driveTrain extends SubsystemBase {
 
 
 
-  private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_sideMotor);
+  private final WPI_VictorSPX sideMotorVictorSPX = new WPI_VictorSPX(Constants.id_wheelsMotor);
   AHRS gyro = new AHRS(SerialPort.Port.kMXP);
 
   public void initDefaultCommand(){
@@ -73,6 +73,9 @@ public class driveTrain extends SubsystemBase {
   public static void resetEncoders(){
     r_driveEncoder.reset();
     l_driveEncoder.reset();
+  }
+  public static void hDrive(){
+
   }
   @Override
   public void periodic(){

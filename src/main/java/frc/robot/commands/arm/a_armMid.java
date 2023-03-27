@@ -20,7 +20,7 @@ import frc.robot.subsystems.armDirectional;
 public class a_armMid extends InstantCommand{
 
   public final static armDirectional armDirectional = new armDirectional();
-
+  public int aPos;
   public a_armMid() {
     addRequirements(RobotContainer.armLinear);
     addRequirements(RobotContainer.armDirectional);
@@ -28,11 +28,20 @@ public class a_armMid extends InstantCommand{
   @SuppressWarnings("resource")
   @Override
   public void initialize(){
-    SequentialCommandGroup a_armMid = new SequentialCommandGroup(
-    new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
-    new InstantCommand(()   -> armDirectional.armMove(0), armDirectional));
     SendableChooser<SequentialCommandGroup> autoChooser;
     autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("a_armMid", a_armMid);
+    if (aPos == 0){
+      SequentialCommandGroup a_armMid = new SequentialCommandGroup(
+      new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
+      new InstantCommand(()   -> armDirectional.armMove(0), armDirectional));
+      autoChooser.setDefaultOption("a_armMid", a_armMid);
+    }
+    if (aPos == 1){
+      SequentialCommandGroup a_armMid = new SequentialCommandGroup(
+      new RunCommand(()   -> armDirectional.armMove(-0.5), armDirectional).withTimeout(2.5),
+      new InstantCommand(()   -> armDirectional.armMove(0), armDirectional));
+      autoChooser.setDefaultOption("a_armMid", a_armMid);
+    }
+
   }
 }

@@ -4,15 +4,27 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class grabber extends SubsystemBase {
-  WPI_VictorSPX grabberMotor = new WPI_VictorSPX(Constants.id_grabberMotor);
+  WPI_TalonSRX grabberMotor = new WPI_TalonSRX(Constants.id_grabberMotor);
 
-public void gMove(Double speed) {
+public void gIntake() {
+  grabberMotor.set(1.0);
+}
+public void gRelease() {
+  grabberMotor.set(-1.0);
+}
+public void cRelease() {
+  grabberMotor.set(-0.2);
+}
+public void gStop(){
   grabberMotor.set(0);
+}
+public void gHold(){
+  grabberMotor.set(0.15);
 }
 @Override
 public void periodic(){

@@ -24,10 +24,10 @@ public final class Constants {
   public static int id_leftMotor_B        = 1;
   public static int id_rightMotor_A       = 2;
   public static int id_rightMotor_B       = 3;
-  public static int id_sideMotor          = 4; 
+  public static int id_wheelsMotor        = 4; 
   public static int id_directionalMotor   = 13;
   public static int id_armMotor           = 14;
-  public static int id_grabberMotor       = 99;
+  public static int id_grabberMotor       = 8;
   public static int id_shiftSolenoid      = 4;
   public static int id_liftSolenoid       = 5;
 
@@ -52,4 +52,5 @@ public final class Constants {
   public static int ax_driveTrainRotation = 1;
   public static int ax_driveTrainSwipe    = 0;
   public static int ax_gearShift          = 3;
+  public static int ax_armDirectional     = 1;
 }

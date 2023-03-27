@@ -4,18 +4,19 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 
+public class wheels extends SubsystemBase {
+  WPI_VictorSPX wheelsMotor = new WPI_VictorSPX(Constants.id_wheelsMotor);
 
-public class hDrive extends SubsystemBase {
-  Solenoid  liftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.id_liftSolenoid);
-public void lift(boolean pos) {
- liftSolenoid.set(pos);
+public void Intake(Double speed) {
+  wheelsMotor.set(speed);
 }
-
+public void outTake(Double speed) {
+  wheelsMotor.set(speed);
+}
 @Override
 public void periodic(){
 }

@@ -43,7 +43,7 @@ public class armLinear extends SubsystemBase {
     }
 
     public void armWinch(double speed) {
-
+        armMotorTalonSRX.set(ControlMode.PercentOutput,speed);
     }
     
     public static void resetEncoders() {

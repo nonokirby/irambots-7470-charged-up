@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -92,5 +94,11 @@ public class armDirectional extends SubsystemBase {
     public void periodic(){
       SmartDashboard.putNumber("linear encoder", getArmEncoder());
       SmartDashboard.putNumber("directional encoder", getDirEncoder());
+      /*if (RobotContainer.m_arcade.getRawAxis(Constants.ax_armDirectional) > 0.1){
+        directionalMotorTalonSRX.set(ControlMode.PercentOutput, -1);
+      }
+      if (RobotContainer.m_arcade.getRawAxis(Constants.ax_armDirectional) < -0.1){
+        directionalMotorTalonSRX.set(ControlMode.PercentOutput, 1);*/
+      
     }
 }   

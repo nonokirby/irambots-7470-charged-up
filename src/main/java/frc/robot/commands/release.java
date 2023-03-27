@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class grab extends InstantCommand {
+public class release extends InstantCommand {
 
-  public grab(/*String pos*/) {
+  public release(/*String pos*/) {
     addRequirements(RobotContainer.grabber);
   }
 
@@ -32,17 +32,18 @@ public class grab extends InstantCommand {
       RobotContainer.grabber.gMove(0.3);
     }
     */
-    RobotContainer.grabber.gIntake();
-    System.out.print("hello");
+    RobotContainer.grabber.gRelease();
+    System.out.print("goodbye");
+
   }
-@Override
-public boolean isFinished() {
-  return false;
-}
-@Override
-public void end(boolean interrupted) {
-  RobotContainer.grabber.gHold();
-}
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.grabber.gStop();
+  }
   }
 
 
