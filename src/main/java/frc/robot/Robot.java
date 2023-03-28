@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
     new Thread(()-> {
       UsbCamera camera = CameraServer.startAutomaticCapture();
     }).start();
+    System.out.print("ballz");
 
   }
 
@@ -31,7 +32,11 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void disabledInit() {
-
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+    CommandScheduler.getInstance().cancel(m_autonomousCommand);
   }
 
   @Override
@@ -55,9 +60,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    CommandScheduler.getInstance().cancel(m_autonomousCommand);
   }
 
   @Override
