@@ -35,7 +35,8 @@ import frc.robot.subsystems.*;
     private final JoystickButton grab = new JoystickButton(m_arcade,9);
     private final JoystickButton release = new JoystickButton(m_arcade, 10);
     private final JoystickButton coneRelease = new JoystickButton(m_arcade,1);
-    private final JoystickButton a_armHigh = new JoystickButton(m_arcade, 11);
+    private final JoystickButton medRelease = new JoystickButton(m_arcade, 2);
+    private final JoystickButton medGrab = new JoystickButton(m_arcade, 11);
     private final JoystickButton a_armMid = new JoystickButton(m_arcade, 4);
     private final JoystickButton a_armLow = new JoystickButton(m_arcade, 12);
     private final JoystickButton a_armStow = new JoystickButton(m_arcade, 6);
@@ -66,9 +67,42 @@ import frc.robot.subsystems.*;
     new RunCommand(()       -> driveTrain.driveArcade(0, 0.5), driveTrain).withTimeout(3),
     new InstantCommand(()   -> driveTrain.driveArcade(0,0),driveTrain));
 
+    SequentialCommandGroup a_mid_taxiCharge = new SequentialCommandGroup(
+    new InstantCommand(()   -> gearShift.shift(true)),
+    new InstantCommand(()   -> hDrive.lift(true)),
+    new RunCommand(()       -> grabber.gIntake()).withTimeout(0.5),
+    new InstantCommand(()   -> grabber.gHold()),
+    new RunCommand(()       -> armLinear.armWinch(0.5)).withTimeout(0.5),
+    new RunCommand(()       -> armLinear.armWinch(0.5)).raceWith(new RunCommand(() -> armDirectional.armMove(-1)).withTimeout(0.5)),
+    new InstantCommand(()   -> armDirectional.armMove(0)),
+    new InstantCommand(()   -> armLinear.armWinch(0.4)),
+    new ParallelCommandGroup(new RunCommand(() -> grabber.gIntake()),(new RunCommand(() -> armLinear.armWinch(-0.5)))).withTimeout(2),
+    new InstantCommand(()   -> grabber.gHold()),
+    new RunCommand(()       -> armDirectional.armMove(-0.5)).raceWith(new RunCommand(() -> armLinear.armWinch(1))).withTimeout(1.5),
+    new RunCommand(()       -> armDirectional.armMove(-1)).raceWith(new RunCommand(() -> armLinear.armWinch(-0.5)).withTimeout(0.7)),
+    new InstantCommand(()   -> armDirectional.armMove(0)),
+  //new InstantCommand(()   -> armLinear.armWinch(1)).withTimeout(1),
+    new InstantCommand(()   -> armLinear.armWinch(0)),
+    new RunCommand(()       -> armLinear.armWinch(-1)).withTimeout(2.25),
+    new RunCommand(()       -> grabber.gRelease()).raceWith(new RunCommand(() -> armLinear.armWinch(1)).withTimeout(0.5)),
+    new InstantCommand(()   -> grabber.gStop()),
+    new RunCommand(()       -> armLinear.armWinch(1)).withTimeout(1),
+    new InstantCommand(()   -> armLinear.armWinch(0)),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0),driveTrain).withTimeout(1),
+    new InstantCommand(()   -> gearShift.shift(false)),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 1.0),driveTrain).withTimeout(5),
+    new InstantCommand(()   -> driveTrain.driveArcade(0,0)),
+    new InstantCommand(()   -> armLinear.armWinch(0.0),armLinear));
+
+    SequentialCommandGroup a_do_nothing = new SequentialCommandGroup(
+    new InstantCommand(()   -> gearShift.shift(true)));
+    
+
     SequentialCommandGroup a_high_taxiCharge = new SequentialCommandGroup(
     new InstantCommand(()   -> gearShift.shift(true)),
     new InstantCommand(()   -> hDrive.lift(true)),
+    new RunCommand (()      -> grabber.gIntake()).withTimeout(0.25),
+    new InstantCommand(()   -> grabber.gHold()),
     new RunCommand(()       -> armLinear.armWinch(0.5)).withTimeout(0.5),
     new RunCommand(()       -> armLinear.armWinch(0.5)).raceWith(new RunCommand(() -> armDirectional.armMove(-1)).withTimeout(0.5)),
     new InstantCommand(()   -> armDirectional.armMove(0)),
@@ -86,13 +120,15 @@ import frc.robot.subsystems.*;
     new RunCommand(()       -> armLinear.armWinch(1)).withTimeout(1),
     new InstantCommand(()   -> armLinear.armWinch(0)),
     new RunCommand(()       -> driveTrain.driveArcade(0, 0),driveTrain).withTimeout(1),
-    new RunCommand(()       -> driveTrain.driveArcade(0, 1),driveTrain).withTimeout(2),
+    new RunCommand(()       -> driveTrain.driveArcade(0, 0.4),driveTrain).withTimeout(3),
     new InstantCommand(()   -> driveTrain.driveArcade(0,0)),
     new InstantCommand(()   -> armLinear.armWinch(0.0),armLinear));
 
     autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("mid & taxi", a_mid_taxiBack);
-    autoChooser.addOption("mid & taxi charge", a_high_taxiCharge );
+    autoChooser.setDefaultOption("mid & taxi charge", a_high_taxiCharge);
+    autoChooser.addOption("high & taxi back", a_high_taxiCharge);
+    autoChooser.addOption("mid & taxi back", a_mid_taxiBack );
+    autoChooser.addOption("do nothing", a_do_nothing);
     SmartDashboard.putData(autoChooser);
  }
 private void configureButtonBindings() {
@@ -103,11 +139,12 @@ private void configureButtonBindings() {
   grab.whileTrue(new grab());
   release.whileTrue(new release());
   coneRelease.whileTrue(new coneRelease());
+  medRelease.whileTrue(new medRelease());
   r_armBackward.whileTrue(new r_armBackward());
   r_armFoward.whileTrue(new r_armFoward());
   mw_armIn.whileTrue(new mw_armIn());
   mw_armOut.whileTrue(new mw_armOut());
-  a_armHigh.onTrue(new a_armHigh());
+  medGrab.whileTrue(new medGrab());
   a_armMid.onTrue(new a_armLow());
   a_armLow.onTrue(new a_armLow());
   a_armStow.onTrue(new a_armStow());

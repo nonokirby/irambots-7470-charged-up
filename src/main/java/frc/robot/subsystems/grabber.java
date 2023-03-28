@@ -14,11 +14,17 @@ public class grabber extends SubsystemBase {
 public void gIntake() {
   grabberMotor.set(1.0);
 }
+public void gGrab(){
+  grabberMotor.set(0.75);
+}
 public void gRelease() {
   grabberMotor.set(-1.0);
 }
 public void cRelease() {
   grabberMotor.set(-0.2);
+}
+public void mRelease() {
+  grabberMotor.set(-0.5);
 }
 public void gStop(){
   grabberMotor.set(0);
