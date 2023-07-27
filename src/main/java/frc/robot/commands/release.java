@@ -33,7 +33,7 @@ public class release extends InstantCommand {
     }
     */
     RobotContainer.grabber.gRelease();
-    System.out.print("goodbye");
+
 
   }
   @Override

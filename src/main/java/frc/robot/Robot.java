@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  @SuppressWarnings("unused")
+  
   private RobotContainer m_robotContainer;
 
   @SuppressWarnings("unused")
@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
     new Thread(()-> {
       UsbCamera camera = CameraServer.startAutomaticCapture();
     }).start();
-    System.out.print("ballz");
+    
 
   }
 

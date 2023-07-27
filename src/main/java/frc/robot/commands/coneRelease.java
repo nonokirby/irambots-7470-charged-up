@@ -33,7 +33,6 @@ public class coneRelease extends InstantCommand {
     }
     */
     RobotContainer.grabber.cRelease();
-    System.out.print("goodbye");
 
   }
   @Override

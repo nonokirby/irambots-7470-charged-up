@@ -33,7 +33,6 @@ public class grab extends InstantCommand {
     }
     */
     RobotContainer.grabber.gIntake();
-    System.out.print("hello");
   }
 @Override
 public boolean isFinished() {

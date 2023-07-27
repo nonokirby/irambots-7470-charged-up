@@ -33,7 +33,6 @@ public class medRelease extends InstantCommand {
     }
     */
     RobotContainer.grabber.mRelease();
-    System.out.print("goodbye");
 
   }
   @Override

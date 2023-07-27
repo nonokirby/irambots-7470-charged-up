@@ -33,7 +33,6 @@ public class medGrab extends InstantCommand {
     }
     */
     RobotContainer.grabber.gGrab();
-    System.out.print("hello");
   }
 @Override
 public boolean isFinished() {
