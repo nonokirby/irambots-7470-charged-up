@@ -53,4 +53,9 @@ public final class Constants {
   public static int ax_driveTrainSwipe    = 0;
   public static int ax_gearShift          = 3;
   public static int ax_armDirectional     = 1;
+
+  //tolerences
+  public static int tol_armAngle    = 200;
+  public static int tol_armLength   = 200;
+
 }

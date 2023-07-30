@@ -61,10 +61,11 @@ public class armLinear extends SubsystemBase {
     
     // -29398.000000
     // 55296
-    public void p_armLength(double length){
-      armMotorTalonSRX.set(ControlMode.Position, length);
+    public void p_armLength(double T_length){
+      
+      armMotorTalonSRX.set(ControlMode.Position, T_length);
     }
-    public void p_armAngle(double angle){
-      directionalMotorTalonSRX.set(ControlMode.Position, angle);
-    }
-}   
+    public void goPos_arm(double position){
+        if (position == 0){
+        }
+        }}
