@@ -13,7 +13,7 @@ import frc.robot.RobotContainer;
 public class r_armFoward extends CommandBase {
 
   public r_armFoward() { 
-    addRequirements(RobotContainer.armLinear);
+
     addRequirements(RobotContainer.armDirectional);
   }
 

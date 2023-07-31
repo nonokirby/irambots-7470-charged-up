@@ -14,7 +14,7 @@ public class w_armRetract extends CommandBase {
 
   public w_armRetract() {
     addRequirements(RobotContainer.armLinear);
-    addRequirements(RobotContainer.armDirectional);
+
   }
 
   @Override

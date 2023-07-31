@@ -14,7 +14,7 @@ public class w_armExtend extends CommandBase {
 
   public w_armExtend() { 
     addRequirements(RobotContainer.armLinear);
-    addRequirements(RobotContainer.armDirectional);
+   
   }
 
   @Override

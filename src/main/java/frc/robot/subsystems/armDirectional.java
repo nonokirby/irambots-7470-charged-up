@@ -22,16 +22,11 @@ import edu.wpi.first.math.controller.PIDController;
 public class armDirectional extends SubsystemBase {
 
     private static TalonSRX directionalMotorTalonSRX;
-    private static TalonSRX armMotorTalonSRX;
     private PIDController linearPIDController;
 
     
     public armDirectional(){
 
-      armMotorTalonSRX = new WPI_TalonSRX(Constants.id_armMotor);
-      armMotorTalonSRX.configFactoryDefault();
-      armMotorTalonSRX.setNeutralMode(NeutralMode.Brake);
-      armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
      
       
       directionalMotorTalonSRX = new WPI_TalonSRX(Constants.id_directionalMotor);
@@ -40,35 +35,21 @@ public class armDirectional extends SubsystemBase {
       directionalMotorTalonSRX.set(ControlMode.PercentOutput, 0);
     }
 
-    public void mw_armWinch(double speed) {
-        armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-    }
 
     public void armMove(double speed) {
         directionalMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_directionalMotorSpeed);
         
     }
 
-    public void armWinch(double speed) {
+  
 
-        if(speed < 0 && getArmEncoder() <= 2500){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-        } else if(speed > 0 && getArmEncoder() >= -28512){
-          armMotorTalonSRX.set(ControlMode.PercentOutput, speed * Constants.lm_armMotorSpeed);
-        }
-          else {
-              armMotorTalonSRX.set(ControlMode.PercentOutput, 0);
-        }
-    }
+    
     
     public static void resetEncoders() {
-        armMotorTalonSRX.setSelectedSensorPosition(0);
+        
         directionalMotorTalonSRX.setSelectedSensorPosition(0);
     }
 
-    public static double getArmEncoder() {
-        return armMotorTalonSRX.getSelectedSensorPosition();
-    }
 
     public static double getDirEncoder() {
         return directionalMotorTalonSRX.getSelectedSensorPosition();
@@ -76,29 +57,11 @@ public class armDirectional extends SubsystemBase {
     
     // -29398.000000
     // 55296
-    public void p_armLength(double length){
-
-  
-
-        armMotorTalonSRX.set(ControlMode.Position, length);
-
-
-      }
     
 
     
     public void p_armAngle(double angle){
       directionalMotorTalonSRX.set(ControlMode.Position, angle);
     }
-    @Override
-    public void periodic(){
-      SmartDashboard.putNumber("linear encoder", getArmEncoder());
-      SmartDashboard.putNumber("directional encoder", getDirEncoder());
-      /*if (RobotContainer.m_arcade.getRawAxis(Constants.ax_armDirectional) > 0.1){
-        directionalMotorTalonSRX.set(ControlMode.PercentOutput, -1);
-      }
-      if (RobotContainer.m_arcade.getRawAxis(Constants.ax_armDirectional) < -0.1){
-        directionalMotorTalonSRX.set(ControlMode.PercentOutput, 1);*/
-      
-    }
+ 
 }   
