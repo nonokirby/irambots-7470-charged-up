@@ -8,9 +8,10 @@
 package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 
-public class w_armExtend extends CommandBase {
+public class w_armExtend extends InstantCommand {
 
   public w_armExtend() { 
     addRequirements(RobotContainer.armLinear);
