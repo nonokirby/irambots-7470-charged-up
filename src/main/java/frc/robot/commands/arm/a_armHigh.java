@@ -24,7 +24,6 @@ public class a_armHigh extends InstantCommand{
     RobotContainer.armDirectional.p_armAngle(Constants.pos_high_armAngle);
   }
 
-  public void execute(){
-    if ()
-  }
+  
+  
 }
