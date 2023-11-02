@@ -19,7 +19,7 @@ public final class Constants {
  
   public static AHRS ahrs;
 
-  //define device Id
+  //Define Device ID
   public static int id_leftMotor_A        = 0;
   public static int id_leftMotor_B        = 1;
   public static int id_rightMotor_A       = 2;
@@ -31,7 +31,7 @@ public final class Constants {
   public static int id_shiftSolenoid      = 4;
   public static int id_liftSolenoid       = 5;
 
-  //1024 per full revolution
+  //Encoder Positions (1024 per full revolution)
   public static int pos_high_armLength    = 306010;
   public static int pos_mid_armLength     = 479;
   public static int pos_low_armLength     = 13970;
@@ -41,20 +41,21 @@ public final class Constants {
   public static int pos_low_armAngle      = 280;
   public static int pos_stow_armAngle     = 0;
 
+  //Speed Multiplier
   public static double lm_driveTrainSpeed       = 0.6;
   public static double lm_driveTrainRotation    = 1;
   public static double lm_driveTrainSide        = 1;
   public static double lm_directionalMotorSpeed = 1;
   public static double lm_armMotorSpeed         = 1;
 
-
+  //Axis
   public static int ax_driveTrainSpeed    = 2;
   public static int ax_driveTrainRotation = 1;
   public static int ax_driveTrainSwipe    = 0;
   public static int ax_gearShift          = 3;
   public static int ax_armDirectional     = 1;
 
-  //tolerences
+  //Tolerences
   public static int tol_armAngle    = 200;
   public static int tol_armLength   = 200;
 
